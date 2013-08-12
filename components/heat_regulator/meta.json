@@ -1,0 +1,5 @@
+{
+   "view": "index.html",
+   "controller": "heat_regulator",
+   "css": ["heat_regulator.css"]
+}

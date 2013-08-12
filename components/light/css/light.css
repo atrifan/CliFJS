@@ -1,0 +1,14 @@
+.light {
+    width: 200px;
+    height: 200px;
+    border: 1px solid;
+    display: inline-block;
+}
+
+.light.on {
+    background-color: yellow;
+}
+
+.light.off {
+    background-color: #000;
+}

@@ -1,0 +1,5 @@
+{
+    "view": "light.html",
+    "controller": "light",
+    "css": ["light.css"]
+}
