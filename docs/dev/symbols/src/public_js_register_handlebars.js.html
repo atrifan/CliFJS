@@ -1,0 +1,61 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">/**
+<span class='line'>  2</span>  * RegisterComponent method. Registers the component helper in the Handlebars module.
+<span class='line'>  3</span>  */</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">registerComponent</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>  5</span> 
+<span class='line'>  6</span> </span><span class="WHIT">    </span><span class="NAME">Handlebars.registerHelper</span><span class="PUNC">(</span><span class="STRN">'component'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>  7</span> </span><span class="WHIT">        </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">componentName</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">options.hash.name</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>  8</span> </span><span class="WHIT">            </span><span class="NAME">context</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">options.hash</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>  9</span> </span><span class="WHIT">            </span><span class="NAME">sid</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">options.hash.sid</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 10</span> </span><span class="WHIT">            </span><span class="NAME">id</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Math.floor</span><span class="PUNC">(</span><span class="NAME">Date.now</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">/</span><span class="PUNC">(</span><span class="NAME">Math.random</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">*</span><span class="NUMB">1001</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">*</span><span class="WHIT"> </span><span class="NAME">Math.floor</span><span class="PUNC">(</span><span class="NAME">Math.random</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">*</span><span class="NUMB">1001</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 11</span> 
+<span class='line'> 12</span> </span><span class="WHIT">        </span><span class="COMM">/**
+<span class='line'> 13</span>          * Gets the required component's configuration from the meta.json in it's folder.
+<span class='line'> 14</span>          */</span><span class="WHIT">
+<span class='line'> 15</span> </span><span class="WHIT">        </span><span class="NAME">$.get</span><span class="PUNC">(</span><span class="STRN">'../../components/'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">componentName</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">'/meta.json'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">config</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 16</span> 
+<span class='line'> 17</span> </span><span class="WHIT">            </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">controller</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">config.controller</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 18</span> </span><span class="WHIT">                </span><span class="NAME">css</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">config.css</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 19</span> </span><span class="WHIT">                </span><span class="NAME">template</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">config.view</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 20</span> </span><span class="WHIT">                </span><span class="NAME">componentURI</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'../../components/'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">componentName</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 21</span> 
+<span class='line'> 22</span> 
+<span class='line'> 23</span> </span><span class="WHIT">            </span><span class="COMM">/**
+<span class='line'> 24</span>              * Gets the HTML file for that component, based on the configuration from the meta.json
+<span class='line'> 25</span>              */</span><span class="WHIT">
+<span class='line'> 26</span> 
+<span class='line'> 27</span> </span><span class="WHIT">            </span><span class="COMM">//TODO: maybe it should support if no template an index.html</span><span class="WHIT">
+<span class='line'> 28</span> </span><span class="WHIT">            </span><span class="NAME">$.get</span><span class="PUNC">(</span><span class="NAME">componentURI</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">'/template/'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">template</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">html</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 29</span> </span><span class="WHIT">                </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">content</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Handlebars.compile</span><span class="PUNC">(</span><span class="NAME">html</span><span class="PUNC">)</span><span class="PUNC">(</span><span class="NAME">context</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 30</span> </span><span class="WHIT">                </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">componentConfig</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 31</span> </span><span class="WHIT">                    </span><span class="NAME">content</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">content</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 32</span> </span><span class="WHIT">                    </span><span class="NAME">clientController</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">controller</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 33</span> </span><span class="WHIT">                    </span><span class="NAME">css</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">css</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 34</span> </span><span class="WHIT">                    </span><span class="NAME">containerId</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">id</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 35</span> </span><span class="WHIT">                    </span><span class="NAME">sid</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">sid</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 36</span> </span><span class="WHIT">                    </span><span class="NAME">path</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">componentURI</span><span class="WHIT">
+<span class='line'> 37</span> </span><span class="WHIT">                </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 38</span> 
+<span class='line'> 39</span> </span><span class="WHIT">                </span><span class="COMM">/**
+<span class='line'> 40</span>                  * Calls the client_provider with the components configuration.
+<span class='line'> 41</span>                  */</span><span class="WHIT">
+<span class='line'> 42</span> </span><span class="WHIT">                </span><span class="NAME">provide</span><span class="PUNC">(</span><span class="NAME">componentConfig</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 43</span> 
+<span class='line'> 44</span> 
+<span class='line'> 45</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 46</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 47</span> 
+<span class='line'> 48</span> </span><span class="WHIT">        </span><span class="COMM">/**
+<span class='line'> 49</span>          * The container div with the unique id.
+<span class='line'> 50</span>          */</span><span class="WHIT">
+<span class='line'> 51</span> </span><span class="WHIT">        </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Handlebars.SafeString</span><span class="PUNC">(</span><span class="STRN">'&lt;div id="'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">id</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">'">&lt;/div>'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 52</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 53</span> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 54</span> </span></pre></body></html>

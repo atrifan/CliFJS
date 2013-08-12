@@ -1,0 +1,381 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Client side framework &mdash; Client Framework 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="./_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="./_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="./_static/jquery.js"></script>
+    <script type="text/javascript" src="./_static/underscore.js"></script>
+    <script type="text/javascript" src="./_static/doctools.js"></script>
+    <link rel="top" title="Client Framework 1.0 documentation" href="../index.html" />
+    <link rel="prev" title="API Reference" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../index.html" title="API Reference"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Client Framework 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="client-side-framework">
+<h1>Client side framework<a class="headerlink" href="#client-side-framework" title="Permalink to this headline">¶</a></h1>
+<p>This is an implementation of a client side framework written from scratch, providing an easy
+way to create and design decoupled components with html css and javascript and easily aggregate inside your
+page providing also an api of intercomponent communication.</p>
+<div class="section" id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>The implementation is designed to work on any type of plain static HTTP server.</p>
+<dl class="docutils">
+<dt>Technologies:</dt>
+<dd><ul class="first last simple">
+<li>Javascript</li>
+<li>Handlebars.js - templating engine</li>
+<li>promise.js</li>
+<li>jQuerry</li>
+<li>node.js + express.js - a personal implementation of a static server written in javascript.</li>
+</ul>
+</dd>
+</dl>
+<p>The last part is not mandatory, it can be ran on a simple apache server. The reason I implemented
+the static server is because I use a variable for temperature that can be set and retrieved.</p>
+<p>If the application is ran on apache - the temperature will be retrieved from a static file,
+and will send a POST request to the server that won&#8217;t change the static file but will pop up an
+alert.</p>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>Here I will describe how you should design your components and serve them to the client. For further
+description of the frameworks api please check the doc/dev/ folder.</p>
+<div class="section" id="starting">
+<h3>Starting<a class="headerlink" href="#starting" title="Permalink to this headline">¶</a></h3>
+<p>In the <tt class="docutils literal"><span class="pre">folder</span></tt> components you have to create a folder representing the component&#8217;s name. In the
+created folder you have to have a meta.json file which represents a basic configuration for that
+component an 3 folders: <tt class="docutils literal"><span class="pre">css</span></tt>, <tt class="docutils literal"><span class="pre">template</span></tt>, <tt class="docutils literal"><span class="pre">js</span></tt>. The <tt class="docutils literal"><span class="pre">meta.json</span></tt> must look like this:</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">{</span>
+    <span class="s2">&quot;view&quot;</span><span class="o">:</span> <span class="s2">&quot;index.html&quot;</span>
+    <span class="s2">&quot;controller&quot;</span><span class="o">:</span> <span class="s2">&quot;index&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;css&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;index.css&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<ul class="simple">
+<li><strong>view</strong> key represents the html file which is the template for your component</li>
+<li><strong>controller</strong> key represents the name of the controller from the js folder</li>
+<li><strong>css</strong> key represents an array of .css files from the css folder that you use for that component</li>
+</ul>
+</div>
+<div class="section" id="template">
+<h3>Template<a class="headerlink" href="#template" title="Permalink to this headline">¶</a></h3>
+<p>The template folder should contain a .html file representing the view for that component. You
+don&#8217;t have to right &lt;head&gt; &lt;body&gt; &lt;html&gt; tags inside this html you just design the layout for
+your component.</p>
+</div>
+<div class="section" id="controller">
+<h3>Controller<a class="headerlink" href="#controller" title="Permalink to this headline">¶</a></h3>
+<p>The controller folder should contain a .js file and the name of the file should be added in the meta.json
+of the component. If you have for example <tt class="docutils literal"><span class="pre">button.js</span></tt> in your controller folder than in the <tt class="docutils literal"><span class="pre">meta.json</span></tt>
+in the <strong>controller</strong> property you will have <tt class="docutils literal"><span class="pre">button</span></tt>.</p>
+<p>The controller should be designed in a standard way following this signature:</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">define</span><span class="p">([],</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The name of the constructor</span>
+<span class="cm">     */</span>
+    <span class="kd">function</span> <span class="nx">ControllerName</span><span class="p">()</span> <span class="p">{}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Init method, you must not do DOM logic here, you can instantiate some variables</span>
+<span class="cm">     * but not depending on the DOM elements.</span>
+<span class="cm">     */</span>
+    <span class="nx">ControllerName</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">init</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+
+
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Start method, here you would add your DOM prelucration and other type of logic</span>
+<span class="cm">     */</span>
+    <span class="nx">ControllerName</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">start</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+
+    <span class="p">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Destroy method, this is the method called when the component is removed from page</span>
+<span class="cm">     * you can also set some logic here, Currently this is not working.</span>
+<span class="cm">     */</span>
+    <span class="nx">ControllerName</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">destroy</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+
+    <span class="p">};</span>
+
+    <span class="k">return</span> <span class="nx">ControllerName</span><span class="p">;</span>
+<span class="p">})</span>
+</pre></div>
+</td></tr></table></div>
+<p>The 3 methods init, start and destroy are <strong>mandatory</strong> because the client framework invokes a lifecycle
+for the controller, apart from this you can add what other methods you want.</p>
+<p>The controller is also injected by the framework and set on the <tt class="docutils literal"><span class="pre">this</span></tt> of the component
+with the following properties:</p>
+<ul class="simple">
+<li><strong>context.getRoot()</strong> - provides a jQuery object representing the container of the component. For each
+component a container will be generated with an unique id, and the containts of that component are insert
+in the generated container.</li>
+<li><strong>context.getComponent(sid)</strong> - this is a method with which you can grab a component from inside your
+application and use it&#8217;s controller. The method returns a promise so you must always use it like this:</li>
+</ul>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">define</span><span class="p">([],</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="nx">Controller</span><span class="p">(){}</span>
+
+    <span class="nx">Controller</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">init</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{};</span>
+
+    <span class="nx">Controller</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">start</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">context</span><span class="p">.</span><span class="nx">getComponent</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">button</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">alert</span><span class="p">(</span><span class="nx">button</span><span class="p">.</span><span class="nx">value</span><span class="p">());</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</td></tr></table></div>
+<ul class="simple">
+<li><strong>emit(evt, data)</strong> - the controller can emit events</li>
+<li><strong>context.messaging.messageSubscribe(evt, handler)</strong> - the controller subscribes to a message queue provided
+by the framework</li>
+<li><strong>context.messaging.messagePublish(evt, data)</strong> - the controller can publish a message on the message queue
+provided by the framework</li>
+<li><strong>context.messaging.messageUnsubscribe(evt, handler)</strong> - the controller can unsubscribe from a message in the
+message queue.</li>
+</ul>
+</div>
+<div class="section" id="css">
+<h3>CSS<a class="headerlink" href="#css" title="Permalink to this headline">¶</a></h3>
+<p>In the <tt class="docutils literal"><span class="pre">css</span></tt> folder from your component&#8217;s folder you must have a .css file which you later declare in
+the controller`s <tt class="docutils literal"><span class="pre">meta.json</span></tt>.</p>
+</div>
+<div class="section" id="aggregating-components">
+<h3>Aggregating components<a class="headerlink" href="#aggregating-components" title="Permalink to this headline">¶</a></h3>
+<p>The framework also uses handlebars templating engine that the framework can process, so it is easy to
+reuse other components/aggregate.</p>
+<div class="section" id="agregation-in-other-components">
+<h4>Agregation in other components<a class="headerlink" href="#agregation-in-other-components" title="Permalink to this headline">¶</a></h4>
+<p>If you are in the component&#8217;s template folder in the html file you should use
+{{component name=&#8221;nameOfComponent&#8221; sid=&#8221;uniqueSid&#8221; [other parameters used in the template]}}
+So if you have a template like this:</p>
+<div class="highlight-javascript"><pre>&lt;div class="button" value="{{value}}""&gt;
+    {{label}}
+&lt;/div&gt;</pre>
+</div>
+<p>And you aggregate it in another component that has a html like this:</p>
+<div class="highlight-javascript"><pre>&lt;div class="test"&gt;
+    {{component name="button" sid="button" value="myValue" label="customLabel"}}
+&lt;/div&gt;</pre>
+</div>
+<p>If this component was requested in the browser than the content in the browser will look like this:</p>
+<div class="highlight-javascript"><pre>&lt;div class="test"&gt;
+    &lt;div class="button" value="myValue""&gt;
+        customLabel
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+</div>
+<p><strong>Always remember that the component name must be the name of the folder from the ``components`` folder!</strong>
+<strong>The sid must be unique throughout the page</strong> - This restriction will be removed in the future</p>
+</div>
+<div class="section" id="aggregation-in-index-html">
+<h4>Aggregation in index.html<a class="headerlink" href="#aggregation-in-index-html" title="Permalink to this headline">¶</a></h4>
+<p>If you want to aggregate components in the index.html that you serve - this representing the applications index
+that is accessed by the client, you must use the contains of the &lt;head&gt; tag provided in my example and in the body
+you must always have something like this:</p>
+<div class="highlight-javascript"><pre>&lt;div class="myClass" type="x-handlebars-template"&gt;
+        {{component name="button" sid="button"}}
+&lt;/div&gt;</pre>
+</div>
+<p>The flow works as described in the previous aggregation example, and this usage is only necessary in the
+index.html of the application that you want to server to the clients not also in other components.</p>
+<p>The <strong>type=&#8221;x-handlebars-template&#8221;</strong> is mandatory otherwise the framework will not know that there you want
+to aggregate a component.</p>
+<p><strong>A component&#8217;s html must never be accessed directly from the browsers url, components must always be served
+via the application&#8217;s index.html</strong></p>
+</div>
+</div>
+</div>
+<div class="section" id="tests">
+<h2>Tests<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>The framework was tested in IE8+, FF, Chrome and it worked in all 3 although I have a small issue in IE8,</li>
+</ul>
+<p>this doesn&#8217;t affect the usage. Recomended browsers: FF 15+, Chrome 24+.</p>
+<ul class="simple">
+<li>Also I wrote some UT with mocha, sinon and expect in BDD style but I did not attach them to the project.</li>
+</ul>
+</div>
+<div class="section" id="known-issues">
+<h2>Known issues<a class="headerlink" href="#known-issues" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>the sid property from handlebars must really be unique otherwise the expected behaviour is mallformed.</li>
+<li>if a css/html/js from a component is not found or the meta.json is incorrect than no error message will be
+displayed to the client.</li>
+</ul>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>If you want to run my static express server you must install node.js 0.8.24+ and than go in the project&#8217;s root
+(where you unzip the project) enter cmd if windows or in terminall run npm install -d, afterwards in the terminal
+go to the server folder and run node server.js and you are ready to test - the server runs on port 8080.</p>
+<p>Access the application like so:
+<a class="reference external" href="http://localhost:8080/public/templates/">http://localhost:8080/public/template/</a></p>
+<p>If you want to use it in apache please go in the public/template/index.html and change the server variable in the
+&lt;head&gt; tag.</p>
+</div>
+<div class="section" id="doc-tools">
+<h2>Doc tools<a class="headerlink" href="#doc-tools" title="Permalink to this headline">¶</a></h2>
+<p>The generation of documentation has been done with jsdoc and sphinx rst.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Client side framework</a><ul>
+<li><a class="reference internal" href="#implementation">Implementation</a></li>
+<li><a class="reference internal" href="#usage">Usage</a><ul>
+<li><a class="reference internal" href="#starting">Starting</a></li>
+<li><a class="reference internal" href="#template">Template</a></li>
+<li><a class="reference internal" href="#controller">Controller</a></li>
+<li><a class="reference internal" href="#css">CSS</a></li>
+<li><a class="reference internal" href="#aggregating-components">Aggregating components</a><ul>
+<li><a class="reference internal" href="#agregation-in-other-components">Agregation in other components</a></li>
+<li><a class="reference internal" href="#aggregation-in-index-html">Aggregation in index.html</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tests">Tests</a></li>
+<li><a class="reference internal" href="#known-issues">Known issues</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#doc-tools">Doc tools</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../index.html"
+                        title="previous chapter">API Reference</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="./_sources/framework/client_framework.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../index.html" title="API Reference"
+             >previous</a> |</li>
+        <li><a href="../index.html">Client Framework 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, atrifan.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
