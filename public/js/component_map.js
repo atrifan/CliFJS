@@ -72,8 +72,27 @@ define([], function () {
      * @param {String} id the id for the component that has to be removed
      */
     ComponentMap.prototype.removeComponent = function (id) {
+        var dependencies = this._getDeps(id),
+            self = this;
+
+        console.log(dependencies);
+        for (var i = 0, len = dependencies.length; i < len; i++) {
+            delete self._componentMap[dependencies[i]];
+        }
+
         delete this._componentMap[id];
     };
+
+    ComponentMap.prototype._getDeps = function (id) {
+        var children  = $('#' + id).find('[type="x-handlebars-template"]'),
+            childrenIds = [];
+
+        for(var i = 0, len = children.length; i < len; i++) {
+            childrenIds.push($($(children[i]).children()[0]).attr('id'));
+        }
+
+        return childrenIds;
+    }
 
     /**
      * Empties the client componentMap.

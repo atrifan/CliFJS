@@ -25,6 +25,7 @@ define(['./component_map',
          * @public
          */
         this.messaging = Messaging.get();
+        this.storrage = new Firebase("https://sweltering-fire-6062.firebaseio.com");
     }
 
     /**
@@ -52,6 +53,35 @@ define(['./component_map',
                 return componentMap[component].controller;
             }
         }
+    }
+
+    Context.prototype.delete = function (sid) {
+        var componentMap = ComponentMap.get().getComponentMap();
+        for (var component in componentMap) {
+            if (componentMap[component].sid === sid) {
+                ComponentMap.get().removeComponent(component);
+                //must remove CSS
+                var domElement = $('#' + component);
+                domElement.remove();
+            }
+        }
+
+    }
+
+    Context.prototype.replace = function (sid, componentConfig) {
+        //implement replace functionality
+        var componentMap = ComponentMap.get().getComponentMap(),
+            domElement;
+        for (var component in componentMap) {
+            if (componentMap[component].sid === sid) {
+                domElement = $('#' + component).parent();
+            }
+        }
+
+        this.delete(sid);
+        //register an put stuff here
+        Handlebars.compile('{{component name="button" type="curtain" sid="curtainsda" label="Open curtains" value="open"}}')
+        domElement.html(content);
     }
 
     return Context;
