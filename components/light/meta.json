@@ -1,5 +1,9 @@
 {
-    "view": "light.html",
-    "controller": "light",
-    "css": ["light.css"]
+    "views": {
+        "index": {
+            "view": "light.html",
+            "controller": "light",
+            "css": ["light.css"]
+        }
+    }
 }

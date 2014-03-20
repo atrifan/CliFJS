@@ -1,0 +1,14 @@
+{
+    "views": {
+        "input": {
+            "view": "input.html",
+            "controller": "InputController",
+            "css": ["input.css"]
+        },
+        "textarea": {
+            "view": "textarea.html",
+            "controller": "TextAreaController",
+            "css": ["textarea.css"]
+        }
+    }
+}
