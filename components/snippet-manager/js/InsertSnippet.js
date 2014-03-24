@@ -1,19 +1,22 @@
 define([], function () {
-    function ButtonController() {}
+    function InsertSnippet() {}
 
-    ButtonController.prototype.init = function () {
+    InsertSnippet.prototype.init = function () {
 
     };
 
-    ButtonController.prototype.start = function () {
+    InsertSnippet.prototype.start = function () {
         this._root = this.context.getRoot();
-        this._buttonWrapper = this._root.find('.button-wrapper');
-        this._button = this._root.find('.button');
-        this._label = this._root.find('.label');
-        this._button.on('click', this.click.bind(this));
+        var self = this;
+        this.context.getComponent('saveSnippet').then(function(SubmitButton) {
+            SubmitButton.on('click', self.saveSnippet.bind(self));
+        });
     };
 
-    ButtonController.prototype.label = function (label) {
+    InsertSnippet.prototype.saveSnippet = function (event) {
+
+    }
+    InsertSnippet.prototype.label = function (label) {
         if(!label) {
             return this._label.text();
         }
@@ -22,7 +25,7 @@ define([], function () {
         return this;
     };
 
-    ButtonController.prototype.value = function (value) {
+    InsertSnippet.prototype.value = function (value) {
         if(!value) {
             return this._button.attr('value');
         }
@@ -32,15 +35,15 @@ define([], function () {
     };
 
 
-    ButtonController.prototype.click = function (event) {
+    InsertSnippet.prototype.click = function (event) {
         this.emit('click');
         this.context.messaging.messagePublish(this._button.attr('type'),
             this._button.attr('value'));
     };
 
-    ButtonController.prototype.destroy = function () {
+    InsertSnippet.prototype.destroy = function () {
 
     };
 
-    return ButtonController;
+    return InsertSnippet;
 })
