@@ -79,8 +79,13 @@ define(['./component_map',
         }
 
         this.delete(sid);
-        //register an put stuff here
-        Handlebars.compile('{{component name="button" type="curtain" sid="curtainsda" label="Open curtains" value="open"}}')
+        //register an put stuff her
+        var handlebarContext = '{{component ';
+        for(var key in componentConfig) {
+            handlebarContext += key + '"' + componentConfig[key] + '"';
+        }
+        handlebarContext += "}}"
+        var content = Handlebars.compile(handlebarContext)
         domElement.html(content);
     }
 
