@@ -1,0 +1,23 @@
+{
+   "views": {
+
+       "insertSnippet": {
+           "view": "insert-snippet.html",
+           "controller": "InsertSnippet",
+           "css": ["insertSnippet.css"]
+       },
+
+       "snippetManager": {
+           "view": "snippetManager.html",
+           "controller": "SnippetManager",
+           "css": ["snippetManager.css"]
+       },
+
+       "detailedSnippet": {
+           "view": "detailed.html",
+           "controller": "DetailedSnippet",
+           "css": ["detailedSnippet.css"]
+       }
+   }
+
+}

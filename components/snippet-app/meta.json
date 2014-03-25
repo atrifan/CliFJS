@@ -1,0 +1,9 @@
+{
+    "views": {
+        "index": {
+            "controller": "snippet",
+            "css": ["app.css"],
+            "view": "index.html"
+        }
+    }
+}

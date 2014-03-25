@@ -1,5 +1,9 @@
 {
-   "view": "index.html",
-   "controller": "heat_regulator",
-   "css": ["heat_regulator.css"]
+    "views": {
+        "index": {
+            "view": "index.html",
+            "controller": "heat_regulator",
+            "css": ["heat_regulator.css"]
+        }
+    }
 }

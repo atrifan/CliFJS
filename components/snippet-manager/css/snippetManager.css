@@ -1,0 +1,11 @@
+.snippet-manager-wrapper {
+    overflow: hidden;
+    width: 100%;
+    padding: 9px;
+}
+
+.snippet-manager-wrapper .row {
+    border: 2px solid black;
+    overflow: hidden;
+    padding: 9px;
+}

@@ -74,36 +74,11 @@
     </head>
     <body>
 
-       <div class="control-panel">
-           <h3>Control Panel:</h3>
-           <div class="app-button" type="x-handlebars-template">
-                {{component name="button" type="light" sid="lighter" label="Turn on light" value="light-on"}}
-           </div>
 
-           <div class="app-button" type="x-handlebars-template">
-               {{component name="button" type="curtain" sid="curtain" label="Open curtains" value="open"}}
-           </div>
 
-           <div class="app-heat" type="x-handlebars-template">
-               {{component name="heat_regulator" label="Set temperature:" sid="heat_regulator"}}
-           </div>
-
+       <div class="snippet-manager" type="x-handlebars-template">
+           {{component name="snippet-app" view="index" sid="snipi"}}
        </div>
-
-    <div class="reactive-components">
-        <h3>Reactive components</h3>
-        <div class="heat-display" type="x-handlebars-template">
-            {{component name="heater" sid="heater" title="Temperature display"}}
-        </div>
-
-        <div class="light-display" type="x-handlebars-template">
-            {{component name="light" sid="light" title="Light bulb"}}
-        </div>
-
-        <div class="curtain-display" type="x-handlebars-template">
-            {{component name="curtains" sid="curtains" title="Curtain"}}
-        </div>
-    </div>
 
 
     </body>

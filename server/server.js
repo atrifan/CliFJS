@@ -19,6 +19,7 @@ StaticServer.prototype.start = function () {
     var self = this;
 
     app.use('/public', express.static(this._serverRoot + '/public'));
+    app.use('/applications', express.static(this._serverRoot + '/applications'));
     app.use('/components', express.static(this._serverRoot + '/components'));
     app.use('/tests', express.static(this._serverRoot + '/tests'));
     app.use(express.favicon(this._serverRoot + '/public/resources/favicon.ico'));
@@ -38,7 +39,7 @@ StaticServer.prototype.start = function () {
             res.send(404);
         }
     });
-    app.listen(8080);
+    app.listen(8083);
 };
 
 var serverInstance = new StaticServer();

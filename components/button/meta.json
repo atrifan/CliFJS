@@ -1,5 +1,9 @@
 {
-   "view": "index.html",
-   "controller": "button",
-   "css": ["button.css"]
+    "views": {
+        "index": {
+            "view": "index.html",
+            "controller": "button",
+            "css": ["button.css"]
+        }
+    }
 }

@@ -1,0 +1,20 @@
+.insert-wrapper {
+    overflow: hidden;
+    width: 100%;
+    padding: 9px;
+}
+
+.insert-wrapper .row {
+    overflow: hidden;
+    padding: 9px;
+    background-color: #ebebeb;
+    margin-bottom: 9px;
+    border: 1px solid blanchedalmond;
+}
+
+.insert-wrapper .submit {
+    overflow: hidden;
+    padding: 9px;
+    margin-right: 20px;
+    float: right;
+}

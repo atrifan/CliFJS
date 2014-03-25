@@ -1,5 +1,9 @@
 {
-    "view": "curtains.html",
-    "controller": "curtains",
-    "css": ["curtains.css"]
+    "views": {
+        "index": {
+            "view": "curtains.html",
+            "controller": "curtains",
+            "css": ["curtains.css"]
+        }
+    }
 }

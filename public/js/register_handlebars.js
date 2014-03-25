@@ -5,19 +5,26 @@ function registerComponent() {
 
     Handlebars.registerHelper('component', function(options) {
         var componentName = options.hash.name,
+            view = options.hash.view || "index",
             context = options.hash,
             sid = options.hash.sid,
             id = Math.floor(Date.now()/(Math.random()*1001) * Math.floor(Math.random()*1001));
-
+            console.log(context);
         /**
          * Gets the required component's configuration from the meta.json in it's folder.
          */
         $.get('../../components/' + componentName + '/meta.json', function (config) {
 
+            if(!config.views[view]) {
+                alert("The specified view " + view + " for component " + componentName + " was not found!")
+                //should show 404
+                return;
+            }
             console.log("---", id);
-            var controller = config.controller,
-                css = config.css,
-                template = config.view,
+            var viewConfig = config.views[view],
+                controller = viewConfig.controller,
+                css = viewConfig.css,
+                template = viewConfig.view,
                 componentURI = '../../components/' + componentName;
 
 
