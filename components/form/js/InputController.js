@@ -18,7 +18,6 @@ define([], function () {
     }
 
     InputController.prototype.value = function (value) {
-        console.log(value);
         if(!value) {
             return this._input.val();
         }

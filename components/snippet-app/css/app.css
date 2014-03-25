@@ -1,8 +1,14 @@
 .control-panel {
     width: 400px;
     overflow: hidden;
+    clear: both;
+    margin-bottom: 20px;
+    min-height: 30px;
     padding: 9px;
 }
 .control-panel .button {
     float: left;
+}
+.app-view {
+    clear: both;
 }

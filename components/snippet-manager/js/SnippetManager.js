@@ -14,7 +14,6 @@ define([], function () {
     };
 
     SnippetManager.prototype._remove = function (info) {
-        console.log(info.name());
         var removeSid = info.name();
         this.context.delete(removeSid);
         $('#'+removeSid).remove();

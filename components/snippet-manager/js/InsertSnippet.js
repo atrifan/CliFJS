@@ -17,9 +17,18 @@ define(['/public/js/lib/promise.js'], function (Promise) {
         };
 
         var self = this;
-        this.context.getComponent('saveSnippet').then(function(SubmitButton) {
-            SubmitButton.on('click', self.saveSnippet.bind(self));
-        });
+        if(!this.context.getComponent('saveSnippet')) {
+            setTimeout(function () {
+                self.start();
+            }, 100)
+        } else {
+            this.context.getComponent('saveSnippet').then(function(Controller) {
+                Controller.on('click', self.saveSnippet.bind(self));
+            })
+        }
+
+
+
     };
 
     InsertSnippet.prototype.saveSnippet = function (event) {
@@ -27,7 +36,7 @@ define(['/public/js/lib/promise.js'], function (Promise) {
             self = this;
         Promise.allKeys(this._children).then(
             function (kids) {
-                for (kid in kids) {
+                for (var kid in kids) {
                     info[kid] = kids[kid].value();
                     kids[kid].value(" ");
                 }
@@ -65,7 +74,7 @@ define(['/public/js/lib/promise.js'], function (Promise) {
     };
 
     InsertSnippet.prototype.destroy = function () {
-
+        InsertSnippet = null;
     };
 
     return InsertSnippet;

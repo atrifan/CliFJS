@@ -9,7 +9,6 @@ function registerComponent() {
             context = options.hash,
             sid = options.hash.sid,
             id = Math.floor(Date.now()/(Math.random()*1001) * Math.floor(Math.random()*1001));
-            console.log(context);
         /**
          * Gets the required component's configuration from the meta.json in it's folder.
          */
@@ -20,7 +19,6 @@ function registerComponent() {
                 //should show 404
                 return;
             }
-            console.log("---", id);
             var viewConfig = config.views[view],
                 controller = viewConfig.controller,
                 css = viewConfig.css,
@@ -56,7 +54,7 @@ function registerComponent() {
         /**
          * The container div with the unique id.
          */
-        return new Handlebars.SafeString('<div id="' + id + '"></div>');
+        return new Handlebars.SafeString('<div class="' +'app-clifJs"' + 'id="' + id + '" +></div>');
     });
 
 }

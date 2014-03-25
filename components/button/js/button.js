@@ -39,7 +39,7 @@ define([], function () {
     };
 
     ButtonController.prototype.destroy = function () {
-
+        ButtonController = null;
     };
 
     return ButtonController;

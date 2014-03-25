@@ -61,16 +61,31 @@ define(['./component_map',
         }
     }
 
+
     Context.prototype.delete = function (sid) {
+        console.log('deleting', sid);
         var componentMap = ComponentMap.get().getComponentMap();
+        console.log(componentMap.length);
         for (var component in componentMap) {
-            if (componentMap[component].sid === sid) {
-                ComponentMap.get().removeComponent(component);
+            if (componentMap[component].sid === sid || component === sid) {
+                sid = componentMap[component].sid;
+                this.getComponent(sid).then(function (Controller) {
+                    Controller.destroy();
+                });
+                //ComponentMap.get().removeComponent(component);
                 //must remove CSS
+                ComponentMap.get().removeComponent(component);
                 var domElement = $('#' + component);
+                var results = ComponentMap.get()._getDeps(component);
+                for (var i = 0, len = results.length; i < len; i++) {
+                    console.log("element", results[i]);
+                    this.delete(results[i]);
+                }
                 domElement.remove();
+
             }
         }
+
 
     }
 
@@ -96,7 +111,6 @@ define(['./component_map',
     }
 
     Context.prototype.insert = function(element, componentConfig) {
-
         var handlebar = '{{component ';
         for (var handlebarInfo in componentConfig.handleBar) {
             handlebar += handlebarInfo + '="' + componentConfig.handleBar[handlebarInfo] + '"';
@@ -108,7 +122,6 @@ define(['./component_map',
 
         handlebar += "}}";
 
-        console.log(componentConfig.context);
         var content = Handlebars.compile(handlebar);
         element.html(content);
 

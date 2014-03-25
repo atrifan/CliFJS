@@ -63,6 +63,8 @@ define([], function () {
      * @public
      */
     ComponentMap.prototype.registerComponent = function (id, configuration) {
+        console.log('registerComponent ', id, configuration);
+        console.log(this._componentMap);
         this._componentMap[id] = configuration;
     };
 
@@ -75,7 +77,6 @@ define([], function () {
         var dependencies = this._getDeps(id),
             self = this;
 
-        console.log(dependencies);
         for (var i = 0, len = dependencies.length; i < len; i++) {
             delete self._componentMap[dependencies[i]];
         }
@@ -84,11 +85,11 @@ define([], function () {
     };
 
     ComponentMap.prototype._getDeps = function (id) {
-        var children  = $('#' + id).find('[type="x-handlebars-template"]'),
+        var children  = $('#' + id).find('.app-clifJs'),
             childrenIds = [];
 
         for(var i = 0, len = children.length; i < len; i++) {
-            childrenIds.push($($(children[i]).children()[0]).attr('id'));
+            childrenIds.push($(children[i]).attr('id'));
         }
 
         return childrenIds;
