@@ -29,6 +29,7 @@ define(['/public/js/lib/promise.js'], function (Promise) {
             function (kids) {
                 for (kid in kids) {
                     info[kid] = kids[kid].value();
+                    kids[kid].value(" ");
                 }
                 self.snippetStorage.push(info);
             },

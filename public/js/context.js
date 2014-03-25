@@ -82,7 +82,7 @@ define(['./component_map',
         //register an put stuff her
         var handlebarContext = '{{component ';
         for(var key in componentConfig) {
-            handlebarContext += key + '"' + componentConfig[key] + '"';
+            handlebarContext += key + '="' + componentConfig[key] + '"';
         }
         handlebarContext += "}}"
         var content = Handlebars.compile(handlebarContext)

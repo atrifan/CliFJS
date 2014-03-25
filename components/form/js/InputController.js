@@ -10,9 +10,15 @@ define([], function () {
         this._inputWrapper = this._root.find('.input-wrapper');
         this._input = this._root.find('input');
         this._label = this._root.find('.label');
+        this._input.on('click', this._click.bind(this));
     };
 
+    InputController.prototype._click = function (event) {
+        this._input.val("");
+    }
+
     InputController.prototype.value = function (value) {
+        console.log(value);
         if(!value) {
             return this._input.val();
         }

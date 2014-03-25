@@ -8,30 +8,31 @@ define([], function () {
     SnippetManager.prototype.start = function () {
         this._root = this.context.getRoot();
         this._wrapper = this._root.find('.snippet-manager-wrapper');
-        this.snippetStorage.once('value', this._showData.bind(this));
+        this.snippetStorage.on('child_added', this._assert.bind(this));
+        this.snippetStorage.on('child_removed', this._remove.bind(this));
         var self = this;
     };
 
-    SnippetManager.prototype._showData = function (info) {
-        info = info.val();
-        console.log(info);
-        for(var key in info) {
-            this._assert(key, info[key]);
-        }
+    SnippetManager.prototype._remove = function (info) {
+        console.log(info.name());
+        var removeSid = info.name();
+        this.context.delete(removeSid);
+        $('#'+removeSid).remove();
     }
 
-    SnippetManager.prototype._assert = function (key, info) {
-        console.log('gigi');
-        console.log(this._wrapper);
-        info["id"] = key;
+    SnippetManager.prototype._assert = function (info, oldInfo) {
+        var name = info.name();
+        info = info.val();
+        info["id"] = name;
         var row = $('<div></div>');
         row.attr('class', 'row');
+        row.attr('id', name);
         this._wrapper.append(row);
         var configuration = {
             'handleBar': {
                 'name': 'snippet-manager',
                 'view': 'detailedSnippet',
-                'sid': key
+                'sid': name
             },
             'context': info
         };

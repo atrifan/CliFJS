@@ -15,11 +15,11 @@ define([], function () {
             };
             if (data === "manage") {
                 info.view = "snippetManager";
-                info.sid = "snippetManager";
+                info.sid = "snippetView";
                 self.changeView(info);
             } else if (data === "insert") {
                 info.view = "insertSnippet";
-                info.sid = "insertSnippet";
+                info.sid = "snippetView";
                 self.changeView(info);
             }
         });
@@ -27,10 +27,8 @@ define([], function () {
     };
 
     SnippetApp.prototype.changeView = function (info) {
-        console.log(info);
-        this.context.insert(this._viewContainment, {
-            handleBar: info
-        });
+            this.context.delete('snippetView');
+            this.context.insert(this._viewContainment, {handleBar: info});
     }
 
     SnippetApp.prototype.destroy = function () {
