@@ -1,0 +1,8 @@
+.control-panel {
+    width: 400px;
+    overflow: hidden;
+    padding: 9px;
+}
+.control-panel .button {
+    float: left;
+}

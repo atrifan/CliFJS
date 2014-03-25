@@ -1,15 +1,16 @@
-<br/>
 <div class="insert-wrapper">
     <div class="row">
         {{component name="form" view="textarea" cols="50" rows="10" label="Code" sid="code"}}
     </div>
     <div class="row">
-        {{component name="form" view="textarea" cols="50" rows="10" label="Code" sid="description"}}
+        {{component name="form" view="textarea" cols="50" rows="10" label="Description" sid="description"}}
     </div>
 
     <div class="row">
-        {{component name="form" view="input" type="text" label="UserName:" value="User..." sid="user"}}
+        {{component name="form" view="input" type="text" label="User Name:" value="User..." sid="user"}}
     </div>
 
-    {{component name="button" label="Save Snippet" value="Save" sid="saveSnippet"}}
+    <div class="submit">
+        {{component name="button" label="Save Snippet" value="Save" sid="saveSnippet"}}
+    </div>
 </div>

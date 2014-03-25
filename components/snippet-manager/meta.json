@@ -10,7 +10,7 @@
        "snippetManager": {
            "view": "snippetManager.html",
            "controller": "SnippetManager",
-           "css": ["insertSnippet.css"]
+           "css": ["snippetManager.css"]
        },
 
        "detailedSnippet": {

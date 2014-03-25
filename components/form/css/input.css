@@ -1,0 +1,16 @@
+.input-wrapper {
+    width: 100%;
+    padding: 9px;
+    overflow: hidden;
+}
+
+.input-wrapper .label {
+    float: left;
+    padding: 9px;
+    color: #000000;
+}
+
+.input-wrapper .input {
+    float: left;
+    padding: 9px;
+}

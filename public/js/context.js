@@ -84,5 +84,26 @@ define(['./component_map',
         domElement.html(content);
     }
 
+    Context.prototype.insert = function(element, componentConfig) {
+
+        var handlebar = '{{component ';
+        for (var handlebarInfo in componentConfig.handleBar) {
+            handlebar += handlebarInfo + '="' + componentConfig.handleBar[handlebarInfo] + '"';
+        }
+
+        for (var handlebarInfo in componentConfig.context) {
+            handlebar += handlebarInfo + '="' + componentConfig.context[handlebarInfo] + '"';
+        }
+
+        handlebar += "}}";
+
+        console.log(componentConfig.context);
+        var content = Handlebars.compile(handlebar);
+        element.html(content);
+
+
+
+    }
+
     return Context;
 });
