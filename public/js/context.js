@@ -25,6 +25,12 @@ define(['./component_map',
          * @public
          */
         this.messaging = Messaging.get();
+
+        /**
+         * The Storage module
+         * @type {Firebase}
+         * @public
+         */
         this.storrage = new Firebase("https://sweltering-fire-6062.firebaseio.com");
     }
 

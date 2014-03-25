@@ -148,6 +148,12 @@ with the following properties:
 
 - **context.messaging.messageUnsubscribe(evt, handler)** - the controller can unsubscribe from a message in the
   message queue.
+  
+- **context.storrage** - the storrage provided by firebase, read firebase docs in order to use api
+
+- **context.insert(element, configuration)** - insert new component inside the page
+
+- **context.delete(sid)** - remove component that contains current sid
 
 ===
 CSS
