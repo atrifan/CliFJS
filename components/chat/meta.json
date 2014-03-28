@@ -1,0 +1,9 @@
+{
+    "views": {
+        "index": {
+            "css": ["chat.css"],
+            "view": "chat.html",
+            "controller": "chat"
+        }
+    }
+}

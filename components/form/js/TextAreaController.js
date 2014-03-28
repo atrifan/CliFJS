@@ -10,7 +10,12 @@ define([], function () {
         this._buttonWrapper = this._root.find('.textarea-wrapper');
         this._textarea = this._root.find('textarea');
         this._label = this._root.find('.label');
+        this._textarea.keypress(this._keyPress.bind(this));
     };
+
+    TextAreaController.prototype._keyPress = function (event) {
+        this.emit('keyPress', event);
+    }
 
     TextAreaController.prototype.value = function (value) {
         if(!value) {

@@ -11,11 +11,26 @@ define([], function () {
         this._input = this._root.find('input');
         this._label = this._root.find('.label');
         this._input.on('click', this._click.bind(this));
+        this._input.keypress(this._keyPress.bind(this));
     };
+
+    InputController.prototype._keyPress = function (event) {
+        this.emit('keyPress', event);
+    }
 
     InputController.prototype._click = function (event) {
         this._input.val("");
     }
+
+    InputController.prototype.disable = function () {
+        this._input.attr('disabled', 'disabled');
+    }
+
+    InputController.prototype.enable = function () {
+        this._input.removeAttr('disabled');
+    }
+
+
 
     InputController.prototype.value = function (value) {
         if(!value) {

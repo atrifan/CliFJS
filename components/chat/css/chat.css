@@ -1,0 +1,20 @@
+.messages {
+    width: 320px;
+    height: 120px;
+    overflow-y: scroll;
+    border: 1px solid;
+}
+
+.msgLabel {
+    font-weight: bold;
+    float: left;
+    color: blue;
+}
+
+.msgText {
+    float: left;
+}
+
+.msgWrapper {
+    clear: both;
+}
