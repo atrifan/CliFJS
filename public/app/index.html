@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/phoneapp.css">
+
+    <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+    <script src="js/lib/jquery-1.9.0.min.js"></script>
+    <script src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="js/lib/es5-shim.min.js"></script>
+    <script src="js/lib/require.js"></script>
+    <script src="js/lib/angular.1.2.16.min.js"></script>
+    <script src="js/lib/angular-resource.1.2.16.min.js"></script>
+    <script src="js/lib/angular-route.1.2.16.min.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/0.5.0/angularfire.min.js"></script>
+
+    <script>
+        var phoneApp = angular.module('phoneApp', [
+            'ngRoute',
+            'firebase'
+        ]);
+
+    </script>
+    <!--<script src="js/app.js"></script>
+    -->
+    <script type="text/javascript">
+        require(['js/app-config.js'], function (){
+            angular.module('phoneApp').config(['$routeProvider',
+                function($routeProvider) {
+                    $routeProvider
+                            .when('/call', {
+                                templateUrl: 'templates/call.html',
+                                controller: 'Caller'
+                            })
+                            .when('/contacts', {
+                                templateUrl: 'templates/contact-list.html',
+                                controller: 'PhoneContacts'
+                            })
+                            .when('/contacts/:contactId', {
+                                templateUrl: 'templates/contact.html',
+                                controller: 'ContactDetail'
+                            })
+                            .otherwise({
+                                redirectTo: '/call'
+                            });
+                }
+            ]);
+            //angular.bootstrap(document, ["phoneApp"]);
+            angular.bootstrap(document, ["phoneApp"]);
+        });
+    </script>
+
+
+
+</head>
+<body>
+
+    <div class="view-container">
+        <div ng-view class="view-frame">
+
+        </div>
+    </div>
+
+
+</body>
+</html>
