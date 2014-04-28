@@ -25,3 +25,15 @@
     background-color: #000a00;
     opacity: 0.9;
 }
+
+.contacts {
+    list-style-type: none;
+    border: 1px solid black;
+}
+.contacts .contact {
+    background-color: #5f9ea0;
+    border-bottom: 1px solid black;
+    font-family: Arial;
+    color: #ebcccc;
+    padding: 2px;
+}

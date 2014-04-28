@@ -6,10 +6,12 @@
         <div class="col-md-10">
 
             <ul class="contacts">
-                <li ng-repeat="contact in contacts | filter:query">
-                    {{contact.firstName}} {{contact.lastName}} | <a href="#/contacts/{{contact.id}}">Call butto</a>
+                <li class = "contact" on-repeat-done="domain-done" ng-repeat="contact in contacts | filter:query">
+                    {{contact.firstName}} {{contact.lastName}} | <a href="#/contacts/{{contact.id}}">Call button</a>
                 </li>
             </ul>
+
+            <ul class="pagination" id="myPager"></ul>
         </div>
     </div>
 </div>

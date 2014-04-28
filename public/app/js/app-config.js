@@ -3,7 +3,7 @@ define([
     ], function(controllers) {
         var phoneApp = angular.module('phoneApp');
         phoneApp.controller("Caller", controllers["Caller"]);
-        phoneApp.controller("PhoneContacts", ["$scope", "$http", "$firebase", controllers["PhoneContacts"]]);
+        phoneApp.controller("PhoneContacts", ["$scope", "$http", "$firebase", "$timeout", "$rootElement", controllers["PhoneContacts"]]);
         phoneApp.controller("ContactDetail", ['$scope', '$routeParams', '$http', '$firebase', controllers["ContactDetail"]]);
 
 
