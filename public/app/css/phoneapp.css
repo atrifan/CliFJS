@@ -30,6 +30,14 @@
     list-style-type: none;
     border: 1px solid black;
 }
+.pagination {
+    margin-left: 30px;
+}
+.searcher {
+    margin-left: 30px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
 .contacts .contact {
     background-color: #5f9ea0;
     border-bottom: 1px solid black;

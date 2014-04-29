@@ -5,6 +5,32 @@ define(['js/util/online'], function (Online) {
         var self = this;
 
         this._root = $rootElement;
+
+
+        this._children = null;
+
+        this._storage = new Firebase("https://sweltering-fire-6062.firebaseio.com/phoneApp");
+
+
+        $scope.paging = function (index) {
+            console.log("Repeate complete " + index);
+            console.log(self._children);
+            console.log(self._children);
+            console.log('wtf');
+            self._addPagination();
+        }
+
+        $scope.$watch('query', function(newValue, oldValue) {
+            console.log(newValue);
+            self._addPagination();
+        });
+
+        this._getStaticContacts($http);
+    }
+
+
+    PhoneContacts.prototype._addPagination = function () {
+        this._children = $('.contacts').children('.contact');
         this.settings = {
             perPage: 10,
             showPrevNext: true,
@@ -15,42 +41,7 @@ define(['js/util/online'], function (Online) {
         this._pager = $('#myPager');
         this._pager.data("curr", 0);
 
-        this._children = null;
-
-        this._storage = new Firebase("https://sweltering-fire-6062.firebaseio.com/phoneApp");
-        this._getStaticContacts($http);
-
-
-        /*
-        Online.checkInternet().then(
-            function () {
-                self.dataExists().then(
-                    function () {
-                        $scope.contacts = $firebase(self._storage);
-                        console.log($scope.contacts);
-                    },
-                    function () {
-                       $http.get('resources/contacts.json')
-                           .success(
-                               function (data) {
-                                   for (var i = 0, len = data.length; i < len; i++) {
-                                       self.store(data[i]);
-                                   }
-                                   $scope.contacts = data;
-                               }
-                           )
-                    }
-                )
-            },
-            function () {
-                self._getStaticContacts($http);
-            }
-            */
-        //)
-
-    }
-
-    PhoneContacts.prototype._addPagination = function () {
+        this._pager.html('');
         if(this.settings.showPrevNext) {
             $('<li><a href="#" class="prev_link">«</a></li>').appendTo(this._pager);
         }
@@ -59,6 +50,10 @@ define(['js/util/online'], function (Online) {
             numItems = this._children.size(),
             numPages = Math.ceil(numItems/this.settings.perPage),
             self = this;
+
+        console.log(numItems);
+
+        self._numPages = numPages;
 
         while(numPages > curr && !this.settings.hidePageNumbers) {
             $('<li><a href="#" class="page_link">'+(curr+1)+'</a></li>').appendTo(this._pager);
@@ -81,12 +76,12 @@ define(['js/util/online'], function (Online) {
         }
         this._pager.children().eq(1).addClass("active");
 
-        this.children.hide();
-        this.children.slice(0, this.settings.perPage).show();
+        this._children.hide();
+        this._children.slice(0, this.settings.perPage).show();
 
         this._pager.find('li .page_link').click(function(){
-            var clickedPage = $(document).html().valueOf() - 1;
-            self._goTo(clickedPage, this.settings.perPage);
+            var clickedPage = $(this).html().valueOf() - 1;
+            self._goTo(clickedPage, self.settings.perPage);
             return false;
         });
 
@@ -104,12 +99,12 @@ define(['js/util/online'], function (Online) {
 
     PhoneContacts.prototype._previous = function(){
         var goToPage = parseInt(this._pager.data("curr")) - 1;
-        this.goTo(goToPage);
+        this._goTo(goToPage);
     }
 
     PhoneContacts.prototype._next = function(){
         var goToPage = parseInt(this._pager.data("curr")) + 1;
-        this.goTo(goToPage);
+        this._goTo(goToPage);
     }
 
     PhoneContacts.prototype._goTo = function(page){
@@ -125,7 +120,7 @@ define(['js/util/online'], function (Online) {
             this._pager.find('.prev_link').hide();
         }
 
-        if (page < (numPages-1)) {
+        if (page < (this._numPages-1)) {
             this._pager.find('.next_link').show();
         }
         else {
@@ -134,7 +129,7 @@ define(['js/util/online'], function (Online) {
 
         this._pager.data("curr", page);
 
-        if (settings.numbersPerPage > 1) {
+        if (this.settings.numbersPerPage > 1) {
             $('.page_link').hide();
             $('.page_link').slice(page, this.settings.numbersPerPage + page).show();
         }
@@ -151,7 +146,6 @@ define(['js/util/online'], function (Online) {
                 function(data) {
                     console.log(self._scope);
                     self._scope.contacts = data;
-                    console.log(self._root.find('.contact'));
                 }
             )
     }

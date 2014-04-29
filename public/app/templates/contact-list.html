@@ -1,17 +1,19 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-2">
-            Search: <input ng-model="query">
+        <div class="col-md-2 searcher">
+            Search: <input ng-model="query" class="query">
         </div>
         <div class="col-md-10">
 
             <ul class="contacts">
-                <li class = "contact" on-repeat-done="domain-done" ng-repeat="contact in contacts | filter:query">
+                <li class = "contact" repeat-complete="paging( $index )" ng-repeat="contact in contacts | filter:query">
                     {{contact.firstName}} {{contact.lastName}} | <a href="#/contacts/{{contact.id}}">Call button</a>
                 </li>
             </ul>
-
-            <ul class="pagination" id="myPager"></ul>
+            <div class="pagination">
+                <ul id="myPager"></ul>
+            </div>
         </div>
+
     </div>
 </div>
