@@ -8,7 +8,21 @@ define([], function () {
         this._storage = new Firebase("https://sweltering-fire-6062.firebaseio.com/phoneApp");
         var self = this;
 
+        $scope.$on('$viewContentLoaded', function(){
+            console.log('snatatea');
+            console.log($('.bbday').html());
+            console.log(moment([2015 ,3, 4]).fromNow());
+            console.log(self._scope.contact);
+            //Here your view content is fully loaded !!
+        });
+
+        $scope.$watch("bbday", function (data) {
+            console.log(data);
+        })
+
+
         this._getStaticContact();
+
 
        /* var keys = $firebase(this._storage).$getIndex();
         $scope.contact = $firebase(this._storage).$child(keys[this._id - 1]); */
@@ -21,8 +35,7 @@ define([], function () {
             .success(
             function(data) {
                 for(var i = 0, len = data.length; i < len; i++) {
-                    console.log(data[i]);
-                    if(parseInt(self._id, 10) === data[i].id, 10) {
+                    if(parseInt(self._id, 10) === data[i].id) {
                         self._scope.contact = data[i];
                     }
                 }
