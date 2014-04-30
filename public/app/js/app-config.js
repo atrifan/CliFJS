@@ -2,7 +2,7 @@ define([
         "./controllers"
     ], function(controllers) {
 
-        var phoneApp = angular.module('phoneApp');
+        var phoneApp = angular.module('controllers', []);
 
         phoneApp.directive('complete', function ($rootScope) {
            var uuid = 0;
@@ -12,8 +12,6 @@ define([
 
                 tElement.attr("complete-id", id);
 
-                console.log(tElement);
-
                 tElement.removeAttr("complete");
                 var completeExpression = tAttributes.complete;
                 var parent = tElement.parent();
@@ -22,8 +20,6 @@ define([
 
                 var unbindWatcher = parentScope.$watch(
                     function() {
-
-                        console.info( "Digest running1231." );
 
                         // Now that we're in a digest, check to see
                         // if there are any ngRepeat items being
@@ -82,8 +78,6 @@ define([
                 var unbindWatcher = parentScope.$watch(
                     function() {
 
-                        console.info( "Digest running." );
-
                         // Now that we're in a digest, check to see
                         // if there are any ngRepeat items being
                         // rendered. Since we want to know when the
@@ -109,7 +103,7 @@ define([
 
                             // Stop watching for changes - we only
                             // care about the first complete rendering.
-                            unbindWatcher();
+                           // unbindWatcher();
 
                             // Invoke the callback.
                             itemScope.$eval(completeExpression);
@@ -131,7 +125,7 @@ define([
             });
         });
 
-        phoneApp.controller("Caller", controllers["Caller"]);
+        phoneApp.controller("Caller", ["$scope", "$http", "$rootElement", controllers["Caller"]]);
         phoneApp.controller("PhoneContacts", ["$scope", "$http", "$firebase", "$timeout", "$rootElement", controllers["PhoneContacts"]]);
         phoneApp.controller("ContactDetail", ['$scope', '$routeParams', '$http', '$firebase', controllers["ContactDetail"]]);
 

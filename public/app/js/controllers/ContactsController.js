@@ -143,12 +143,12 @@ define(['js/util/online'], function (Online) {
         var self = this;
         requester.get('resources/contacts.json')
             .success(
-                function(data) {
-                    console.log(self._scope);
-                    self._scope.contacts = data;
-                }
-            )
+            function(data) {
+                console.log(self._scope);
+                self._scope.contacts = data;
+            }
+        )
     }
 
     return PhoneContacts;
-})
+});

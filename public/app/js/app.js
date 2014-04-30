@@ -17,7 +17,7 @@ phoneApp.config(['$routeProvider',
             })
             .when('/contacts', {
                 templateUrl: 'templates/contact-list.html',
-                controller: 'PhoneContacts'
+                controller: 'Caller'
             })
             .when('/contacts/:contactId', {
                 templateUrl: 'templates/contact-detail.html',
@@ -31,6 +31,6 @@ phoneApp.config(['$routeProvider',
 
 require(controllers, function (CallController, ContactsController, ContactDetailController) {
     phoneApp.controller("Caller", ["$scope", "$http", CallController]);
-    phoneApp.controller("PhoneContacts", ["$scope", "$http", ContactsController]);
+    phoneApp.controller("Caller", ["$scope", "$http", ContactsController]);
     phoneApp.controller("ContactDetail", ["scope", "$http", ContactDetailController]);
 });

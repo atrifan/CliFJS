@@ -12,7 +12,7 @@ phoneApp.config(['$routeProvider',
             })
             .when('/contacts', {
                 templateUrl: 'contact-list.html',
-                controller: 'PhoneContacts'
+                controller: 'Caller'
             })
             .when('/contacts/:contactId', {
                 templateUrl: 'contact-detail.html',
