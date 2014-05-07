@@ -33,7 +33,13 @@
                     Birthday
                 </div>
                 <label class="bbday">
-                    {{contact.birthDate | date:'dd MMMM'}}
+                    <days-until>{{contact.birthDate | date:'yyyy-MM-dd'}}</days-until>
+                </label>
+                <div class="label">
+                    Days until birth-day
+                </div>
+                <label>
+                    {{contact.daysUntil}}
                 </label>
                 <div class="label">
                     Last Seen

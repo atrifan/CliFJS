@@ -21,6 +21,9 @@ define([], function () {
                 for(var i = 0, len = data.length; i < len; i++) {
                     if(parseInt(self._id, 10) === data[i].id) {
                         self._scope.contact = data[i];
+                        var birthDate = data[i].birthDate;
+                        var nextBirthDate = moment(parseInt(birthDate,10)).year(moment().add(1, 'year').year());
+                        self._scope.contact.daysUntil = nextBirthDate.diff(moment(), 'days');
                     }
                 }
             }
