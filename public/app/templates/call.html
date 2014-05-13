@@ -1,17 +1,19 @@
-<div class="container-fluid container-call">
-    <div class="screen">
+<div class="container container-call">
+    <div class="navbar navbar-fixed-bottom">
+        <div class="btn-group">
+            <div class="btn-large call-button" ng-click="openDialog()">
+                <div class="phone-icon-big">
 
-    </div>
-    <div class="btn-group">
-        <div class="btn-large call-button" ng-click="openDialog()">
-            <div class="phone-icon">
-
-            </div>
-            <div class="label" >
-                Call
+                </div>
             </div>
         </div>
+        <!-- Rest of nav bar chopped from here -->
     </div>
+    <div class="container fill">
+        <div id="bg"></div>
+        <!-- This one wants to be 100% height -->
+    </div>
+
     <contacts show="modalShown" width="60%" height="60%">
         <div class='ng-modal' ng-show='show'>
             <div class='ng-modal-overlay' ng-click='hideModal()'></div>
@@ -23,15 +25,27 @@
                             <div class="col-md-2 searcher">
                                 Search: <input ng-model="query" class="query">
                             </div>
-                            <div class="col-md-10" children-change="paging()">
-                                <ul class="contacts" ng-click="reverse=!reverse">
-                                    <li>Sort</li>
-                                </ul>
-                                <ul class="contacts" ng-model="contacts">
-                                    <li class = "contact" repeat-complete="paging( $index )" ng-repeat="contact in contacts | filter:query | orderBy:predicate:reverse">
-                                        {{contact.firstName}} {{contact.lastName}} | <a href="#/contacts/{{contact.id}}">Call button</a>
-                                    </li>
-                                </ul>
+                            <div class="table-responsive" children-change="paging()">
+                                <table class="table contacts" ng-model="contacts">
+                                    <tr>
+                                        <td ng-click="reverse=!reverse">
+                                            <div ng-class="{'sortUp': reverse == true, 'sortDown': reverse == false }">
+
+                                            </div>
+                                        </td>
+                                        <td><b>First Name</b></td>
+                                        <td><b>Second Name</b></td>
+                                        <td><b><i>Call</i></b></td>
+                                    </tr>
+                                    <tr class="contact" repeat-complete="paging($index)"
+                                        ng-repeat="contact in contacts |filter:query|orderBy:predicate:reverse">
+                                        <td>{{contact.id}}</td>
+                                        <td>{{contact.firstName}}</td>
+                                        <td>{{contact.lastName}}</td>
+                                        <td><a href="#/contacts/{{contact.id}}"><img src="img/phone.png"/></a></td>
+                                    </tr>
+                                </table>
+
                                 <div class="pagination">
                                     <ul id="myPager"></ul>
                                 </div>

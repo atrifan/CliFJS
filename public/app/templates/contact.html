@@ -1,56 +1,90 @@
-<div class="container-fluid">
-    <div class="row">
+<div class="container container-call">
+    <div class="container fill">
+        <div id="bg"></div>
+        <!-- This one wants to be 100% height -->
+    </div>
+    <div class="navbar navbar-fixed-top">
+        <div class="row">
 
-        <div class="container">
-            <div class="name">
-                <h2>
-                    {{contact.firstName}} {{contact.lastName}}
-                </h2>
-            </div>
-            <div class="picture">
-
-            </div>
-            <div class="info">
-                <div class="label">
-                    Primary
+            <div class="container-fluid">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <td class="name">
+                                <h2>
+                                    {{contact.firstName}} {{contact.lastName}}
+                                </h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                Primary Phone
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="info">
+                                <a href="tel:{{contact.phoneNumber}}">{{contact.phoneNumber}}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                Country
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="info">
+                                {{contact.country}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                City
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="info">
+                                {{contact.city}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                Birthday
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="info">
+                                {{contact.birthDate * 1000 | date:'yyyy-MM-dd'}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                Days until birth-day
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="info">
+                                {{contact.daysUntil}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                Last Seen
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="lastSeen">
+                                {{contact.myPosition}}
+                                <img ng-src="http://maps.google.com/maps/api/staticmap?center={{contact.currentCoordinates}}
+                            &zoom=4&size=300x300&sensor=false"/>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
-                <div class="info">
-                    {{contact.phoneNumber}}
+                <div class="btn-group">
+                    <a class="btn-link" href="tel:{{contact.phoneNumber}}"><img src="img/phone.png"/></a>
+                    <a class="btn-link" href="sms:{{contact.phoneNumber}}"><img src="img/sms.png"/></a>
                 </div>
-                <div class="label">
-                    Country
-                </div>
-                <label class="info">
-                    {{contact.country}}
-                </label>
-                <div class="label">
-                    City
-                </div>
-                <label class="info">
-                    {{contact.city}}
-                </label>
-                <div class="label">
-                    Birthday
-                </div>
-                <label class="bbday">
-                    <days-until>{{contact.birthDate | date:'yyyy-MM-dd'}}</days-until>
-                </label>
-                <div class="label">
-                    Days until birth-day
-                </div>
-                <label>
-                    {{contact.daysUntil}}
-                </label>
-                <div class="label">
-                    Last Seen
-                </div>
-                <label class="lastSeen">
-                    <img ng-src="http://maps.google.com/maps/api/staticmap?center={{contact.currentCoordinates}}
-                        &zoom=4&size=300x300&sensor=false"/>
-                </label>
             </div>
         </div>
-        </div>
-
     </div>
 </div>
