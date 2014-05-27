@@ -98,7 +98,6 @@
 
 html, body {
     height: 100%;
-    overflow: hidden;
 }
 
 .fill {
@@ -119,14 +118,18 @@ html, body {
     /* A centered div above the overlay with a box shadow. */
     z-index: 10000;
     position: absolute;
-    width: 50%; /* Default */
+    min-width: 30%; /* Default */
 
+    max-height: 90%;
+    min-height: 70%;
     /* Center the dialog */
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
+    overflow-y: auto;
+    overflow-x: auto;
+    transform: translate(-30%, -50%);
+    -webkit-transform: translate(-30%, -50%);
+    -moz-transform: translate(-30%, -50%);
 
     background-color: #fff;
     box-shadow: 4px 4px 80px #000;

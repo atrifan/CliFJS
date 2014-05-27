@@ -14,7 +14,7 @@
         <!-- This one wants to be 100% height -->
     </div>
 
-    <contacts show="modalShown" width="60%" height="60%">
+    <contacts show="modalShown" width="40%" height="40%">
         <div class='ng-modal' ng-show='show'>
             <div class='ng-modal-overlay' ng-click='hideModal()'></div>
             <div class='ng-modal-dialog' ng-style='dialogStyle'>
@@ -42,7 +42,7 @@
                                         <td>{{contact.id}}</td>
                                         <td>{{contact.firstName}}</td>
                                         <td>{{contact.lastName}}</td>
-                                        <td><a href="#/contacts/{{contact.id}}"><img src="img/phone.png"/></a></td>
+                                        <td><a href="#/contacts/{{contact.id}}"><img src="img/phone.png" style="height:20px;"/></a></td>
                                     </tr>
                                 </table>
 

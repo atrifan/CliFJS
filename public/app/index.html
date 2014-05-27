@@ -17,6 +17,7 @@
     <script src="js/lib/angular-route.1.2.16.min.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/0.5.0/angularfire.min.js"></script>
     <script src="js/lib/moment.min.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
 
     <script>
         var phoneApp = angular.module('phoneApp', [
@@ -42,6 +43,14 @@
                                 templateUrl: 'templates/contact.html',
                                 controller: 'ContactDetail'
                             })
+                }
+            ]);
+            angular.module('phoneApp').config( [
+                '$compileProvider',
+                function( $compileProvider )
+                {
+                    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension|tel|sms):/);
+                    // Angular before v1.2 uses $compileProvider.urlSanitizationWhitelist(...)
                 }
             ]);
             //angular.bootstrap(document, ["phoneApp"]);

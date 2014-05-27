@@ -2,7 +2,7 @@
 	{
 		"country": "Puerto Rico",
 		"city": "Milmort",
-		"currentCoordinates": "-76.89684, 111.69996",
+		"currentCoordinates": "-76.89684,111.69996",
 		"firstName": "Amery",
 		"lastName": "Ratliff",
 		"birthDate": "1388412236",
@@ -998,5 +998,25 @@
 		"birthDate": "1376456353",
 		"id": 100,
 		"phoneNumber": "0845 46 48"
-	}
+	},
+    {
+        "country": "Romania",
+        "city": "Bucharest",
+        "currentCoordinates": "44.435283, 26.049907",
+        "firstName": "Anghelus",
+        "lastName": "Marilena",
+        "birthDate": "1376456353",
+        "id": 101,
+        "phoneNumber": "0746881781"
+    },
+    {
+        "country": "Romania",
+        "city": "Bucuresti",
+        "currentCoordinates": "21.305520, -157.655462",
+        "firstName": "Trifan",
+        "lastName": "Alexandru",
+        "birthDate": "1376456353",
+        "id": 102,
+        "phoneNumber": "0747452376"
+    }
 ]
