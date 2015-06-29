@@ -63,8 +63,6 @@ define([], function () {
      * @public
      */
     ComponentMap.prototype.registerComponent = function (id, configuration) {
-        console.log('registerComponent ', id, configuration);
-        console.log(this._componentMap);
         this._componentMap[id] = configuration;
     };
 
@@ -78,6 +76,7 @@ define([], function () {
             self = this;
 
         for (var i = 0, len = dependencies.length; i < len; i++) {
+            this.removeComponent(dependencies[i]);
             delete self._componentMap[dependencies[i]];
         }
 

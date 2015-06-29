@@ -51,25 +51,42 @@ define(['./context',
      * @public
      */
     Framework.prototype.processComponent = function (config) {
-        var deferredController = $.Deferred(),
-            id = config.containerId,
-            self = this;
 
+        var id = config.containerId,
+            self = this,
+            controllerToResolve;
+
+        var deferred = $.Deferred();
         if(ComponentMap.get().getComponent(id)) {
             //TODO: do something here cause it is wrong
-            return;
+            //return;
+            var componentMap = ComponentMap.get().getComponentMap();
+            componentMap[id].sid = config.sid;
+        } else {
+            var deferredController = $.Deferred();
+            ComponentMap.get().registerComponent(id, {
+                sid: config.sid,
+                controller: deferredController
+            });
         }
 
-        ComponentMap.get().registerComponent(id, {
-            sid: config.sid,
-            controller: deferredController
-        });
+        var ids = ComponentMap.get()._getDeps(id);
+        for(var i = 0; i < ids.length; i++) {
+            var futureController = $.Deferred();
+            ComponentMap.get().registerComponent(ids[i], {
+                controller: futureController
+            });
+        }
+
+        controllerToResolve = ComponentMap.get().getComponent(id).controller;
 
         if(!config.clientController) {
             setTimeout(function () {
-                deferredController.resolve();
+                deferred.resolve({
+                    promisedController: controllerToResolve
+                });
             }, 0);
-            return deferredController.promise();
+            return deferred.promise();
         }
 
         require([config.path + '/js/' + config.clientController], function (controller) {
@@ -79,12 +96,15 @@ define(['./context',
                 context = new Context(config);
 
             cnt.context = context;
-            deferredController.resolve(cnt);
+            deferred.resolve({
+                js: cnt,
+                promisedController: controllerToResolve
+            });
         }, function (err) {
-            deferredController.reject(err);
+            deferred.reject(err);
         });
 
-        return deferredController.promise();
+        return deferred.promise();
     }
 
     return Framework;

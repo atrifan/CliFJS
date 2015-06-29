@@ -7,7 +7,9 @@ define(['./framework', './lib/promise'], function (Framework, Promise) {
      * @name ClientProvider
      * @constructor
      */
-    function ClientProvider () {}
+    function ClientProvider() {
+
+    }
 
     /**
      * Renders the components css and asks the framework to process the components configuration.
@@ -19,21 +21,41 @@ define(['./framework', './lib/promise'], function (Framework, Promise) {
     ClientProvider.prototype.render = function (configuration) {
         this._renderCss(configuration, configuration.css, configuration.path);
 
-        var invokeLifeCycle = function(controller) {
-            controller.init();
-            controller.start();
+        var invokeLifeCycle = function (controller) {
+            return Promise.seq([controller.init.bind(controller),
+                controller.start.bind(controller)
+            ]);
         }
 
+        var self = this;
+        var loadingIndicator = $('<div class="loading overlay nobg"><div class="loader center"></div></div>');
+        loadingIndicator.css('visibility', 'visible');
         $('#' + configuration.containerId).html(configuration.content);
+        $('#' + configuration.containerId).append(loadingIndicator);
         $('#' + configuration.containerId).css('visibility', 'hidden');
-        configuration.cssLoaded.then(function () {
-            $('#' + configuration.containerId).css('visibility', 'visible');
-        }, function (err) {
-            //TODO: do something here
-        });
-        Framework.get().processComponent(configuration).then(function (controller) {
-            if(controller) {
-                invokeLifeCycle(controller);
+
+        Framework.get().processComponent(configuration).then(function (data) {
+            console.log("THE DATA ", data);
+            if (data.js) {
+                configuration.cssLoaded.then(function () {
+                    invokeLifeCycle(data.js).then(function () {
+                        $('#' + configuration.containerId).css('visibility', 'inherit');
+                        data.promisedController.resolve(data.js);
+                        loadingIndicator.fadeOut();
+                        loadingIndicator.remove();
+                    });
+                }, function (err) {
+                    //TODO: do something here
+                });
+            } else {
+                configuration.cssLoaded.then(function () {
+                    $('#' + configuration.containerId).css('visibility', 'inherit');
+                    data.promisedController.resolve();
+                    loadingIndicator.fadeOut();
+                    loadingIndicator.remove();
+                }, function (err) {
+                    //TODO: do something here
+                });
             }
         }, function (err) {
             //TODO: show an error
@@ -61,12 +83,12 @@ define(['./framework', './lib/promise'], function (Framework, Promise) {
         var head = $("head"),
             linkElement;
 
-        for(var i = 0, len = css.length; i < len; i++) {
+        for (var i = 0, len = css.length; i < len; i++) {
             var cssPath = location + '/css/' + css[i],
                 sameLinks = head.find('link[href="' + cssPath + '"]');
 
 
-            if (sameLinks.length === 0){
+            if (sameLinks.length === 0) {
                 var deferrer = Promise.defer();
 
                 deferrers.push(deferrer);

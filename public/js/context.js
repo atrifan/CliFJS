@@ -1,5 +1,7 @@
 define(['./component_map',
-        './messaging'], function (ComponentMap, Messaging) {
+        './messaging',
+        './lib/promise'
+        ], function (ComponentMap, Messaging, Promise) {
 
     /**
      * The component's controller execution context this module is being injected in the controller
@@ -53,13 +55,34 @@ define(['./component_map',
      */
     Context.prototype.getComponent = function (sid) {
         var componentMap = ComponentMap.get().getComponentMap();
-
         for (var component in componentMap) {
             if (componentMap[component].sid === sid) {
                 return componentMap[component].controller;
             }
         }
     }
+
+    Context.prototype.getChildren = function() {
+        var componentMap = ComponentMap.get().getComponentMap();
+        var children = ComponentMap.get()._getDeps(this._parentId);
+        var theChildren = {};
+        for(var i = 0; i < children.length; i++) {
+            if(componentMap[children[i]]) {
+                theChildren[children[i]] = componentMap[children[i]].controller;
+            }
+        }
+
+        var deferred = Promise.defer();
+        Promise.allKeys(theChildren).then(function(data) {
+            var ids = Object.keys(data);
+            var resolvedChildren = {};
+            for(var i = 0; i < ids.length; i++) {
+                resolvedChildren[ComponentMap.get().getComponent(ids[i]).sid] = data[ids[i]];
+            }
+            deferred.resolve(resolvedChildren);
+        });
+        return deferred.promise;
+    };
 
 
     Context.prototype.delete = function (sid) {
@@ -109,6 +132,7 @@ define(['./component_map',
         var content = Handlebars.compile(handlebarContext)
         domElement.html(content);
     }
+
 
     Context.prototype.insert = function(element, componentConfig) {
         var handlebar = '{{component ';
