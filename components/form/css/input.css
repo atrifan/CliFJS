@@ -1,6 +1,7 @@
 .input-wrapper {
     width: 100%;
-    padding: 9px;
+    /*padding: 9px;*/
+    padding-left: 9px;
     overflow: hidden;
 }
 
@@ -12,5 +13,6 @@
 
 .input-wrapper .input {
     float: left;
-    padding: 9px;
+    margin-bottom: 0px !important;
+    /*padding: 9px;*/
 }

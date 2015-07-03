@@ -11,7 +11,9 @@ define([], function () {
         this._input = this._root.find('input');
         this._label = this._root.find('.label');
         this._input.on('click', this._click.bind(this));
+        this._input.on('focus', this._click.bind(this));
         this._input.keypress(this._keyPress.bind(this));
+        this._firstTime = true;
     };
 
     InputController.prototype._keyPress = function (event) {
@@ -19,7 +21,12 @@ define([], function () {
     }
 
     InputController.prototype._click = function (event) {
-        this._input.val("");
+        console.log("CLICK");
+        if(this._firstTime) {
+            this._input.val("");
+            this._firstTime = false;
+            console.log("OK");
+        }
     }
 
     InputController.prototype.disable = function () {
@@ -33,11 +40,19 @@ define([], function () {
 
 
     InputController.prototype.value = function (value) {
-        if(!value) {
+        if(typeof value == 'undefined') {
+            if(this._firstTime) {
+                return undefined;
+            }
+
             return this._input.val();
         }
 
         this._input.val(value);
+        this._firstTime = false;
+        if(("" + value).length == 0) {
+            this._firstTime = true;
+        }
         return this;
     };
 

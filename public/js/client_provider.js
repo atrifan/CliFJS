@@ -35,7 +35,6 @@ define(['./framework', './lib/promise'], function (Framework, Promise) {
         $('#' + configuration.containerId).css('visibility', 'hidden');
 
         Framework.get().processComponent(configuration).then(function (data) {
-            console.log("THE DATA ", data);
             if (data.js) {
                 configuration.cssLoaded.then(function () {
                     invokeLifeCycle(data.js).then(function () {

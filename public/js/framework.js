@@ -89,9 +89,9 @@ define(['./context',
             return deferred.promise();
         }
 
-        require([config.path + '/js/' + config.clientController], function (controller) {
-            jQuery.extend(controller.prototype, EventEmitter.prototype);
 
+        require([config.path + '/js/' + config.clientController], function (controller, err) {
+            jQuery.extend(controller.prototype, EventEmitter.prototype);
             var cnt = new controller(),
                 context = new Context(config);
 
@@ -101,7 +101,8 @@ define(['./context',
                 promisedController: controllerToResolve
             });
         }, function (err) {
-            deferred.reject(err);
+            throw err.stack;
+            deferred.resolve();
         });
 
         return deferred.promise();

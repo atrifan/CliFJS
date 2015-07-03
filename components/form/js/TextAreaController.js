@@ -18,7 +18,7 @@ define([], function () {
     }
 
     TextAreaController.prototype.value = function (value) {
-        if(!value) {
+        if(typeof value == 'undefined') {
             return this._textarea.val();
         }
 

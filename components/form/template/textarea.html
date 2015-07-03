@@ -1,5 +1,7 @@
 <div class="textarea-wrapper">
-    <div class="label">{{label}}</div>
+    {{#if hasLabel}}
+        <div class="label">{{label}}</div>
+    {{/if}}
     <div class="textarea">
         <textarea name="{{name}}" cols="{{cols}}" rows="{{rows}}"></textarea>
     </div>

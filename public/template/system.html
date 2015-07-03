@@ -5,14 +5,37 @@
     <link rel="shortcut icon" href="../resources/icon.png">
 
     <title>Application</title>
+
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/general.css">
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="../css/grid/slick.grid.css" type="text/css"/>
+    <link rel="stylesheet" href="../css/grid/slick.pager.css" type="text/css"/>
+    <link rel="stylesheet" href="../css/grid/jquery-ui-1.8.16.custom.css" type="text/css"/>
+    <link rel="stylesheet" href="../css/grid/example.css" type="text/css"/>
+    <link rel="stylesheet" href="../css/grid/slick.columnpicker.css" type="text/css"/>
+
+
     <script src="https://cdn.firebase.com/v0/firebase.js"></script>
     <script src="../js/lib/jquery-1.9.0.min.js"></script>
     <script src="../js/lib/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+    <script src="../js/lib/jquery.event.drag-2.2.js"></script>
     <script src="../js/lib/es5-shim.min.js"></script>
     <script src="../js/lib/require.js"></script>
     <script src="../js/lib/handlebars.js"></script>
     <script src="../js/register_handlebars.js"></script>
     <script src="../js/lib/bootstrap.min.js"></script>
+
+    <script src="../js/grid/slick.core.js"></script>
+    <script src="../js/grid/slick.formatters.js"></script>
+    <script src="../js/grid/slick.editors.js"></script>
+    <script src="../js/grid/slick.rowselectionmodel.js"></script>
+    <script src="../js/grid/slick.grid.js"></script>
+    <script src="../js/grid/slick.dataview.js"></script>
+    <script src="../js/grid/slick.pager.js"></script>
+    <script src="../js/grid/slick.columnpicker.js"></script>
     <script type="text/javascript">
         //modify this variable if you don't plan to use the express server
         //var serverUsed = 'express';
@@ -74,25 +97,13 @@
             provide();
         });
     </script>
-    <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/general.css">
-    <!-- Bootstrap -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
 
 </head>
 <body>
 
 
-<div class="header" type="x-handlebars-template">
-    {{component name="licenta" view="topController" sid="topController"}}
-</div>
-<div class="app-button" type="x-handlebars-template">
-    {{component name="licenta" view="login" sid="login" hasTitle="true" title="Login"}}
-</div>
-
-
-<div class="app-button" type="x-handlebars-template">
-    {{component name="form" view="checkbox" sid="checkbox" label="Test"}}
+<div type="x-handlebars-template">
+    {{component name="licenta" view="systemView" sid="main"}}
 </div>
 
 </body>
