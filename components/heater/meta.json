@@ -1,9 +1,0 @@
-{
-    "views": {
-        "index": {
-            "view": "index.html",
-            "controller": "heater",
-            "css": ["heater.css"]
-        }
-    }
-}
