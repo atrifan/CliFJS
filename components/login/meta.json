@@ -1,0 +1,9 @@
+{
+  "views": {
+    "index": {
+      "css": ["login.css"],
+      "controller": "LoginController",
+      "view": "login.html"
+    }
+  }
+}
