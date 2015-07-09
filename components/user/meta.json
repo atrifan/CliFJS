@@ -1,0 +1,14 @@
+{
+  "views": {
+    "login": {
+      "css": ["login.css"],
+      "controller": "LoginController",
+      "view": "login.html"
+    },
+    "logout": {
+      "css": [],
+      "controller": "LogoutController",
+      "view": "logout.html"
+    }
+  }
+}
