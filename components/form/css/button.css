@@ -43,6 +43,14 @@
     font-weight: bold;
 }
 
+.button-label a {
+    text-decoration: none;
+}
+
+.button-label a:hover{
+    text-decoration: none;
+}
+
 .button-wrapper {
     padding: 9px 12px;
     line-height: 14px;
