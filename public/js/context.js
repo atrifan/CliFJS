@@ -27,6 +27,8 @@ define(['./component_map',
          */
         this.messaging = eventingQueue;
 
+        this._templates = config.templateInfo;
+
         /**
          * The Storage module
          * @type {Firebase}
@@ -157,8 +159,19 @@ define(['./component_map',
     }
 
     Context.prototype.insertTemplate = function(templateId, templateContext, location) {
-        location.html(templateEngine[templateId](templateContext));
+        var domElement = $.parseHTML(unescapeHTML(this._templates[templateId](templateContext).trim()));
+        location.append(domElement);
+        return domElement;
     }
 
+    function unescapeHTML(p_string)
+    {
+        if ((typeof p_string === "string") && (new RegExp(/&amp;|&lt;|&gt;|&quot;|&#39;/).test(p_string)))
+        {
+            return p_string.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, "\"").replace(/&#39;/g, "'");
+        }
+
+        return p_string;
+    }
     return Context;
 });

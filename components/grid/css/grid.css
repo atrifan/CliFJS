@@ -4,3 +4,23 @@
     border: 1px solid;
     overflow:hidden;
 }
+
+.header-row {
+    background-color: #ebebeb;
+    overflow: hidden;
+}
+.grid-row {
+    display: block;
+    overflow: hidden;
+}
+.cell {
+    float: left;
+    padding: 9px;
+}
+.collapsation-data {
+    clear: both;
+    display: none;
+}
+.collapsation-data.visible {
+    display: block;
+}

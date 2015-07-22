@@ -1,6 +1,8 @@
 <div class="grid">
-    {{#onEvent name="collapse"}}
-        {{#each cell}}
+    <div class="header-row"></div>
+    <div class="info"></div>
+    {{#onEvent name="collapse" injectLocation="collapse"}}
+        {{#each key}}
            <div class="cell">{{this.value}}</div>
         {{/each}}
     {{/onEvent}}

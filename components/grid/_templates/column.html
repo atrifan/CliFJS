@@ -1,6 +1,6 @@
 {{#template id="column_type_1"}}
     {{#each column}}
-        <div class="cell">
+        <div class="cell {{this.css}}" id="{{this.id}}">
             {{this.value}}
         </div>
     {{/each}}

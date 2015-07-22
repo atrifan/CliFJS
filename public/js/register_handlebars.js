@@ -70,7 +70,6 @@ define([], function() {
             var id = Math.floor(Date.now() / (Math.random() * 1001) * Math.floor(Math.random() * 1001));
 
             eventingQueue.messageSubscribe(eventName, function (data) {
-                console.log(data);
                 var info = options.fn(data);
                 if(injectLocation) {
                     if(data.injectLocation) {
@@ -91,6 +90,17 @@ define([], function() {
         Handlebars.registerHelper('template', function (options) {
             var id = options.hash.id;
             templateEngine[id] = options.fn;
+            return {
+                id: id,
+                templateData: options.fn
+            };
+        });
+
+        Handlebars.registerHelper('template_insert', function(options) {
+            var id = options.hash.id,
+                data = options.hash.data;
+
+           return templateEngine[id](data);
         });
     }
     return registerComponent;

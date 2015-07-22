@@ -1,9 +1,11 @@
 {{#template id="row_type_1"}}
     {{#each row}}
-        {{template id="column_type_1" data=this.data}}
-        {{#if collapsable}}
-            <div class="collapsation-data" id="collapse-{{this.id}}">
-            </div>
-        {{/if}}
+        <div class="grid-row" id="{{this.id}}">
+            {{template_insert id="column_type_1" data=this.data}}
+            {{#if collapsable}}
+                <div class="collapsation-data visible" id="collapse-{{this.id}}">
+                </div>
+            {{/if}}
+        </div>
     {{/each}}
 {{/template}}
