@@ -1,0 +1,9 @@
+{{#template id="row_type_1"}}
+    {{#each row}}
+        {{template id="column_type_1" data=this.data}}
+        {{#if collapsable}}
+            <div class="collapsation-data" id="collapse-{{this.id}}">
+            </div>
+        {{/if}}
+    {{/each}}
+{{/template}}

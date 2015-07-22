@@ -1,7 +1,6 @@
 define(['./component_map',
-        './messaging',
         './lib/promise'
-        ], function (ComponentMap, Messaging, Promise) {
+        ], function (ComponentMap, Promise) {
 
     /**
      * The component's controller execution context this module is being injected in the controller
@@ -26,7 +25,7 @@ define(['./component_map',
          * @type {Messaging}
          * @public
          */
-        this.messaging = Messaging.get();
+        this.messaging = eventingQueue;
 
         /**
          * The Storage module
@@ -34,7 +33,11 @@ define(['./component_map',
          * @public
          */
         this.storrage = new Firebase("https://sweltering-fire-6062.firebaseio.com");
+
+
     }
+
+    
 
     /**
      * Retrieves the container of the component.
@@ -151,6 +154,10 @@ define(['./component_map',
 
 
 
+    }
+
+    Context.prototype.insertTemplate = function(templateId, templateContext, location) {
+        location.html(templateEngine[templateId](templateContext));
     }
 
     return Context;

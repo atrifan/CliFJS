@@ -1,0 +1,10 @@
+{
+  "views": {
+    "index": {
+      "css": ["grid.css"],
+      "controller": "GridController",
+      "view": "grid.html"
+    }
+  },
+  "templates": ["column.html", "row.html"]
+}
