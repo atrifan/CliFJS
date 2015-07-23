@@ -69,9 +69,9 @@ define([], function () {
             rowData.row[i].data["column"] = [];
             for(var j = 0; j < headers.length; j++) {
                 var headerName = headers[j];
-                var jsonKey = mapping[headerNamessageSubscribeme];
+                var jsonKey = mapping[headerName];
                 rowData.row[i].id = i;
-                rowData.row[i].collapsable = data[i]["collapsable"] || false
+                rowData.row[i].collapsable = data[i]["collapsable"] || false;
                 rowData.row[i].data["column"].push({
                     css: '',
                     value: data[i][jsonKey]
