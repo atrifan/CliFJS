@@ -25,7 +25,14 @@ define([], function () {
                 surname: 'me',
                 extra: 'extraStuff',
                 collapsable: true
-            }]
+            },
+                {
+                    id: '2',
+                    name: 'to2',
+                    surname: 'me2',
+                    extra: 'extraStuff2',
+                    collapsable: true
+                }]
         });
         //var test = this._root.find('.first_insertion')
         //this.context.insertTemplate('column_type_1', {column: [{value: 'toMe'}]}, test);
@@ -64,7 +71,7 @@ define([], function () {
                 var headerName = headers[j];
                 var jsonKey = mapping[headerName];
                 rowData.row[i].id = i;
-                rowData.row[i].collapsable = data[i]["collapsable"] || false
+                rowData.row[i].collapsable = data[i]["collapsable"] || false;
                 rowData.row[i].data["column"].push({
                     css: '',
                     value: data[i][jsonKey]
@@ -93,27 +100,33 @@ define([], function () {
                 var headerWidth = $('#'+id).width();
                 $(elem).width(headerWidth);
             });
-            row.on('click', function() {
-                var id = row.attr('id');
-                self.emit(self._data[id]);
-                var collapsePlaceholder = row.find('.collapsation-data');
-                if(!collapsePlaceholder.html().trim().length) {
-                    self.context.messaging.messagePublish('collapse', {
-                        injectLocation: id,
-                        key: [{
-                            value: self._data[id].extra
-                        }]
-                    });
-                } else {
-                    if(collapsePlaceholder.hasClass('visible')) {
-                        collapsePlaceholder.removeClass('visible');
-                    } else {
-                        collapsePlaceholder.addClass('visible');
-                    }
-                }
-            });
+            this._makeRowClickable(row);
         }
+    };
+
+    GridController.prototype._makeRowClickable = function(row) {
+        var self = this;
+        row.on('click', function() {
+            var id = row.attr('id');
+            console.log(id);
+            self.emit(self._data[id]);
+            var collapsePlaceholder = row.find('.collapsation-data');
+            if(!collapsePlaceholder.html().trim().length) {
+                self.context.messaging.messagePublish('collapse', {
+                    injectLocation: id,
+                    key: [{
+                        value: self._data[id].extra
+                    }]
+                });
+            } else {
+                if(collapsePlaceholder.hasClass('visible')) {
+                    collapsePlaceholder.removeClass('visible');
+                } else {
+                    collapsePlaceholder.addClass('visible');
+                }
+            }
+        });
     }
 
     return GridController;
-})
+});

@@ -20,13 +20,16 @@ define(['./component_requester'], function(ComponentRequester) {
                 injectLocation = options.hash.injectLocation;
             var id = Math.floor(Date.now() / (Math.random() * 1001) * Math.floor(Math.random() * 1001));
 
+            console.log(injectLocation);
             eventingQueue.messageSubscribe(eventName, function (data) {
+                console.log(data);
                 var info = options.fn(data);
+                var idInject;
                 if(injectLocation) {
                     if(data.injectLocation) {
-                        injectLocation += '-' + data.injectLocation;
+                        idInject = injectLocation + '-' + data.injectLocation;
                     }
-                    $('#' + injectLocation).html(info);
+                    $('#' + idInject).html(info);
                 } else {
                     $('#' + id).html(info);
                 }
