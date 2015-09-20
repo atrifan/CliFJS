@@ -1,6 +1,7 @@
 define(['./component_map',
-        './lib/promise'
-        ], function (ComponentMap, Promise) {
+        './lib/promise',
+        './component_requester'
+        ], function (ComponentMap, Promise, ComponentRequester) {
 
     /**
      * The component's controller execution context this module is being injected in the controller
@@ -129,34 +130,17 @@ define(['./component_map',
 
         this.delete(sid);
         //register an put stuff her
-        var handlebarContext = '{{component ';
-        for(var key in componentConfig) {
-            handlebarContext += key + '="' + componentConfig[key] + '"';
-        }
-        handlebarContext += "}}"
-        var content = Handlebars.compile(handlebarContext)
-        domElement.html(content);
+        var content = ComponentRequester.render(componentConfig.component, componentConfig.context);
+        domElement.html(content.string);
     }
 
 
     Context.prototype.insert = function(element, componentConfig) {
-        var handlebar = '{{component ';
-        for (var handlebarInfo in componentConfig.handleBar) {
-            handlebar += handlebarInfo + '="' + componentConfig.handleBar[handlebarInfo] + '"';
-        }
 
-        for (var handlebarInfo in componentConfig.context) {
-            handlebar += handlebarInfo + '="' + componentConfig.context[handlebarInfo] + '"';
-        }
+        var content = ComponentRequester.render(componentConfig.component, componentConfig.context);
+        element.html(content.string);
 
-        handlebar += "}}";
-
-        var content = Handlebars.compile(handlebar);
-        element.html(content);
-
-
-
-    }
+    };
 
     Context.prototype.insertTemplate = function(templateId, templateContext, location) {
         var domElement = $.parseHTML(unescapeHTML(this._templates[templateId](templateContext).trim()));
