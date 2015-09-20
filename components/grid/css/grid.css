@@ -8,10 +8,12 @@
 .header-row {
     background-color: #ebebeb;
     overflow: hidden;
+    border-bottom: 1px solid;
 }
 .grid-row {
     display: block;
     overflow: hidden;
+    border-bottom: 1px solid;
 }
 .cell {
     float: left;

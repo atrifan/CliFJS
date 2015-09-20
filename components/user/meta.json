@@ -9,6 +9,10 @@
       "css": [],
       "controller": "LogoutController",
       "view": "logout.html"
+    },
+    "register": {
+      "css": [],
+      "view": "register.html"
     }
   }
 }

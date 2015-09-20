@@ -1,0 +1,22 @@
+<div class="register-container" data-registerurl="{{registerUrl}}" data-redirectto="{{redirectTo}}">
+    <div class="card-wrapper round">
+        {{#if hasTitle}}
+        <div class="card-title">
+            <div class="fTitle login">{{title}}</div>
+        </div>
+        {{/if}}
+        <div class="card-body {{#if hasTitle}} {{else}}no-title{{/if}}">
+            {{#each fields}}
+                <div class="form-key-value">
+                    <div class="form-key">{{key}}</div>
+                    <div class="form-value">
+                        {{component name="form" view=view type=type hasLabel="false" value=value label=label}}
+                    </div>
+                </div>
+            {{/each}}
+            <div class="right-container">
+                {{component name="form" view="button" label="Register" sid="loginButton" type="primary"}}
+            </div>
+        </div>
+    </div>
+</div>

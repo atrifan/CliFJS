@@ -1,0 +1,9 @@
+{
+  "views": {
+    "index": {
+      "css": [],
+      "controller": "Test",
+      "view": "index.html"
+    }
+  }
+}
