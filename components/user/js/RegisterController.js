@@ -85,6 +85,10 @@ define(['promise',
                     dataType: 'json',
                     success: function(data) {
                         self.context.loadingIndicator.fadeOut();
+                        var myModal = Modal.info('Success', 'You have created an account successfull');
+                        myModal.on('OK', function () {
+                            self._jumpToPage();
+                        })
                     },
                     error: function(err) {
                         self.context.loadingIndicator.fadeOut();
@@ -103,6 +107,10 @@ define(['promise',
     RegisterController.prototype._resetForm = function () {
         this.context.loadingIndicator.fadeOut();
         this._submitButton.enable();
+    };
+
+    RegisterController.prototpye._jumpToPage = function () {
+        window.location=this._redirectURL;
     };
 
     return RegisterController;
