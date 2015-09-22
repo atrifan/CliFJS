@@ -39,7 +39,7 @@ StaticServer.prototype.start = function () {
             res.send(404);
         }
     });
-    app.listen(8084);
+    app.listen(80);
 };
 
 var serverInstance = new StaticServer();

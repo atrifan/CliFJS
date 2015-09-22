@@ -1,6 +1,7 @@
 define(['./context',
         'componentMap',
-        './lib/EventEmitter'], function (Context, ComponentMap, EventEmitter) {
+        'eventEmitter',
+        'promise'], function (Context, ComponentMap, EventEmitter, Promise) {
 
     /**
      * The Framework module that makes all the computations and registers components to the client component

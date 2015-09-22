@@ -1,6 +1,6 @@
 define(['componentMap',
-        './lib/promise',
-        './component_requester'
+        'promise',
+        'componentRequester'
         ], function (ComponentMap, Promise, ComponentRequester) {
 
     /**

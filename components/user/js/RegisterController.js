@@ -1,7 +1,7 @@
 /**
  * Created by atrifan on 9/22/2015.
  */
-define(['../../../public/js/lib/promise.js',
+define(['promise',
         'modal'], function (Promise, Modal) {
 
     function RegisterController() {

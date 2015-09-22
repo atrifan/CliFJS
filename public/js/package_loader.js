@@ -5,7 +5,11 @@ requirejs.config({
    paths: {
        'componentMap': '/public/js/component_map',
        'clientProvider': '/public/js/client_provider',
-       'modal': '/components/form/js/modal'
+       'modal': '/components/form/js/modal',
+       'promise': '/public/js/lib/promise',
+       'componentRequester': '/public/js/component_requester',
+       'eventEmitter': '/public/js/lib/EventEmitter',
+       'framework': '/public/js/framework'
    }
 });
 function provide(configuration) {
