@@ -2,7 +2,7 @@
  * Created by atrifan on 9/22/2015.
  */
 define(['../../../public/js/lib/promise.js',
-        '../../form/js/Modal'], function (Promise, Modal) {
+        'modal'], function (Promise, Modal) {
 
     function RegisterController() {
 
@@ -42,6 +42,8 @@ define(['../../../public/js/lib/promise.js',
         this._submitButton.disable();
         var self = this;
         this.context.loadingIndicator.show();
+
+        Modal.error('time', 'to do it');
         var dataToSubmit = {};
         for(var key in registerData) {
             dataToSubmit[key] = registerData[key].value();

@@ -13,13 +13,14 @@ define(['../../../public/js/lib/EventEmitter',
         this._overlay = $('<div class="modal-bg overlay"></div>');
         this._modalWrapper = $('<div class="modal-wrapper overlay nobg"></div>');
         this._modalContent = $('<div class="center modal card-wrapper round"></div>');
-        this._modalTitle = $('<div class="card-title"><div class="modal-title fTitle"></div>');
+        this._closeIcon = $('<div class="close-btn"></div>');
+        this._modalTitle = $('<div class="modal-title card-title"><div class="fTitle"></div>');
         this._modalBody = $('<div class="modal-body card-body no-title"></div>');
         this._okBtn = $('<div class="right-container"></div>');
         this._cancelBtn = $('<div class="left-container"></div>');
 
         if(configuration.title) {
-            this._modalTitle.find('.modal-title').text(configuration.title);
+            this._modalTitle.find('.fTitle').text(configuration.title);
             this._modalBody.removeClass('no-title');
         }
 
@@ -69,8 +70,14 @@ define(['../../../public/js/lib/EventEmitter',
         $('body').append(this._overlay);
         $('body').append(this._modalWrapper);
 
+        var self = this;
         if(configuration.type == 'SUCCESS' ||
             configuration.type == 'ERROR') {
+            this._modalTitle.append(this._closeIcon);
+            this._closeIcon.on('click', function () {
+                self.destroy();
+                self.emit('CLOSE');
+            });
             this._overlay.css('visibility', 'inherit');
             this._modalWrapper.css('visibility', 'inherit');
         }
@@ -94,14 +101,12 @@ define(['../../../public/js/lib/EventEmitter',
         Promise.allKeys(buttonInsertions).then(function (buttons) {
             buttons['modalOk'].on('click', function() {
                 self.emit('OK');
-                self._modalWrapper.remove();
-                self._overlay.remove();
+                self._destroy();
             });
             if(buttons['modalCancel']) {
                 buttons['modalCancel'].on('click', function() {
                     self.emit('CANCEL');
-                    self._modalWrapper.remove();
-                    self._overlay.remove();
+                    self._destroy();
                 });
             }
             self._overlay.css('visibility', 'inherit');
@@ -110,6 +115,11 @@ define(['../../../public/js/lib/EventEmitter',
             console.log('SOMETHING BAD HAPPENED');
         })
     };
+
+    Modal.prototype.destroy = function () {
+        this._modalWrapper.remove();
+        this._overlay.remove();
+    }
 
     Modal.prototype._injectComponent = function (componentConfig) {
         var content = ComponentRequester.render(componentConfig.component, componentConfig.context),

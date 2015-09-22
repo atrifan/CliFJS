@@ -4,7 +4,8 @@
 requirejs.config({
    paths: {
        'componentMap': '/public/js/component_map',
-       'clientProvider': '/public/js/client_provider'
+       'clientProvider': '/public/js/client_provider',
+       'modal': '/components/form/js/modal'
    }
 });
 function provide(configuration) {
