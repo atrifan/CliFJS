@@ -1,7 +1,7 @@
 /**
  * RegisterComponent method. Registers the component helper in the Handlebars module.
  */
-define(['./component_requester'], function(ComponentRequester) {
+define(['componentRequester'], function(ComponentRequester) {
     var registerComponent = function() {
         Handlebars.registerHelper('component', function (options) {
 

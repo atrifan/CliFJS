@@ -1,7 +1,7 @@
 /**
  * Created by alexandru.trifan on 20.09.2015.
  */
-define(['./lib/promise',
+define(['promise',
         'componentMap'], function (Promise, ComponentMap) {
 
     function renderComponent(component, context) {

@@ -1,4 +1,4 @@
-define(['./framework', './lib/promise'], function (Framework, Promise) {
+define(['framework', 'promise'], function (Framework, Promise) {
 
     /**
      * The ClientProvider module, renders the component's css, asks the framework to process the components

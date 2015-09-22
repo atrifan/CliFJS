@@ -1,7 +1,7 @@
 /**
  * Created  on 25.06.2015.
  */
-define(['../../../public/js/lib/promise.js'], function (Promise) {
+define(['promise'], function (Promise) {
     function LoginController() {}
 
     LoginController.prototype.init = function () {

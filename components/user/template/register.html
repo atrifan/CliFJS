@@ -1,4 +1,5 @@
-<div class="register-container" data-registerurl="{{registerUrl}}" data-redirectto="{{redirectTo}}">
+<div class="register-container" data-registerurl="{{registerUrl}}" data-redirectto="{{redirectTo}}"
+     data-clientvalidate="{{clientValidate}}">
     <div class="card-wrapper round">
         {{#if hasTitle}}
         <div class="card-title">
@@ -10,7 +11,8 @@
                 <div class="form-key-value">
                     <div class="form-key">{{textToShow}}</div>
                     <div class="form-value">
-                        {{component name="form" view=view type=type hasLabel="false" value=value label=label sid=requestKey}}
+                        {{component name="form" view=view type=type
+                            hasLabel="false" value=value label=label sid=requestKey validationType=validationType}}
                     </div>
                 </div>
             {{/each}}

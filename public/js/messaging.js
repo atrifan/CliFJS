@@ -1,4 +1,4 @@
-define(['./lib/EventEmitter'], function (EventEmitter) {
+define(['eventEmitter'], function (EventEmitter) {
     /**
      * Message Queue module.
      *

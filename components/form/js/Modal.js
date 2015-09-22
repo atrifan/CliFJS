@@ -1,10 +1,10 @@
 /**
  * Created by atrifan on 9/22/2015.
  */
-define(['../../../public/js/lib/EventEmitter',
+define(['eventEmitter',
     'clientProvider',
-    '../../../public/js/lib/promise',
-    '../../../public/js/component_requester',
+    'promise',
+    'componentRequester',
     'componentMap'], function (EventEmitter, ClientProvider, Promise, ComponentRequester, ComponentMap) {
 
 
