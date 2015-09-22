@@ -1,0 +1,38 @@
+<div class="profile-container">
+    <div class="card-wrapper round">
+        {{#if hasName}}
+        <div class="card-title">
+            <div class="fTitle name">{{userName}}</div>
+        </div>
+        {{/if}}
+        <div class="card-body {{#if hasName}} {{else}}no-title{{/if}}">
+            <div class="form-key-value">
+                <img src="../img/user.png" style="width:100%;height:100%"/>
+            </div>
+            <div class="form-key-value">
+                <div class="form-key">Age:</div>
+                <div class="form-value">
+                    {{age}}
+                </div>
+            </div>
+            <div class="form-key-value">
+                <label class="form-key">Height:</label>
+                <div class="form-value">
+                    {{height}}
+                </div>
+            </div>
+            <div class="form-key-value">
+                <label class="form-key">Speed:</label>
+                <div class="form-value">
+                    {{speed}}
+                </div>
+            </div>
+            <div class="form-key-value">
+                <label class="form-key">Super power:</label>
+                <div class="form-value">
+                    {{superPower}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

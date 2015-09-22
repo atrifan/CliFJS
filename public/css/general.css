@@ -183,3 +183,11 @@ body {
         transform: rotate(360deg);
     }
 }
+
+.app-clifJs {
+    position: relative;
+}
+
+[type=x-handlebars-template] {
+    visibility: hidden;
+}

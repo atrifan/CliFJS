@@ -1,0 +1,13 @@
+{
+  "views": {
+    "index": {
+      "css": ["training.css"],
+      "controller": "TrainingController",
+      "view": "training.html"
+    },
+    "profile": {
+      "css": ["training.css"],
+      "view": "profile.html"
+    }
+  }
+}

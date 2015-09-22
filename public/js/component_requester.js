@@ -1,7 +1,8 @@
 /**
  * Created by alexandru.trifan on 20.09.2015.
  */
-define([], function () {
+define(['./lib/promise',
+        'componentMap'], function (Promise, ComponentMap) {
 
     function renderComponent(component, context) {
         var id = Math.floor(Date.now() / (Math.random() * 1001) * Math.floor(Math.random() * 1001));
@@ -11,6 +12,13 @@ define([], function () {
         var sid = component.sid || id,
             view = component.view || 'index',
             componentName = component.name;
+
+        var componentMap = ComponentMap.get();
+
+        componentMap.registerComponent(id, {
+            sid: sid,
+            controller: Promise.defer()
+        });
 
         setTimeout(function () {
             $.get('../../components/' + componentName + '/meta.json', function (config) {

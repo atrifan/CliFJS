@@ -1,5 +1,5 @@
 define(['./context',
-        './component_map',
+        'componentMap',
         './lib/EventEmitter'], function (Context, ComponentMap, EventEmitter) {
 
     /**

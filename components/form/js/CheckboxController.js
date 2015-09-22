@@ -20,6 +20,10 @@ define([], function () {
         this._checkBoxButton.prop('checked', value);
     }
 
+    CheckboxController.prototype.value = function () {
+        return this._checkBoxButton.prop('checked');
+    };
+
     CheckboxController.prototype.destroy = function () {
     }
 

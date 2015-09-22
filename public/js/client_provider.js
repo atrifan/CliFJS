@@ -11,6 +11,13 @@ define(['./framework', './lib/promise'], function (Framework, Promise) {
 
     }
 
+    ClientProvider._instance = null;
+
+    ClientProvider.get = function () {
+        return ClientProvider._instance ||
+            (ClientProvider._instance = new ClientProvider());
+    };
+
     /**
      * Renders the components css and asks the framework to process the components configuration.
      * If any error occurs it renders an error message inside the page.
@@ -110,5 +117,5 @@ define(['./framework', './lib/promise'], function (Framework, Promise) {
         });
     }
 
-    return ClientProvider;
+    return ClientProvider.get();
 });

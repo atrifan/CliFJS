@@ -12,6 +12,7 @@
     },
     "register": {
       "css": [],
+      "controller": "RegisterController",
       "view": "register.html"
     }
   }

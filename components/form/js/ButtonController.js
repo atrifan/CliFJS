@@ -6,8 +6,8 @@ define([], function () {
     };
 
     ButtonController.prototype.start = function () {
+        this._enabled = true;
         this._root = this.context.getRoot();
-        this._buttonWrapper = this._root.find('.button-wrapper');
         this._button = this._root.find('.button');
         this._label = this._root.find('.button-label');
         this._button.on('click', this.click.bind(this));
@@ -41,14 +41,28 @@ define([], function () {
 
 
     ButtonController.prototype.click = function (event) {
-        this.emit('click');
-        this.context.messaging.messagePublish(this._button.attr('type'),
-            this._button.attr('value'));
+        if(this._enabled) {
+            this.emit('click');
+            this.context.messaging.messagePublish(this._button.attr('type'),
+                this._button.attr('value'));
+        }
+
+        return;
     };
 
     ButtonController.prototype.destroy = function () {
         ButtonController = null;
     };
+
+    ButtonController.prototype.enable = function () {
+        this._enabled = true;
+        this._button.removeClass('disabled');
+    }
+
+    ButtonController.prototype.disable = function () {
+        this._enabled = false;
+        this._button.addClass('disabled');
+    }
 
     return ButtonController;
 })

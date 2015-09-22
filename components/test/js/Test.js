@@ -22,20 +22,23 @@ define([], function () {
                 title: "Register",
                 fields: [
                     {
-                        key: 'UserName',
                         view: 'input',
                         type: 'text',
-                        value: 'userName'
+                        textToShow: 'User Name',
+                        requestKey: 'userName',
+                        value: 'Enter User Name'
                     },
                     {
-                        key: 'Select me',
-                        view: 'checkbox',
-                        label: 'Do you agree?'
+                        textToShow: 'Do you agree?',
+                        requestKey: 'agreeement',
+                        view: 'checkbox'
                     }
                 ]
             }
-        })
-    }
+        }).then(function(Controller) {
+            console.log(Controller);
+        });
+    };
 
     return Test;
 });

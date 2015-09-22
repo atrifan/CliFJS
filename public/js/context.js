@@ -1,4 +1,4 @@
-define(['./component_map',
+define(['componentMap',
         './lib/promise',
         './component_requester'
         ], function (ComponentMap, Promise, ComponentRequester) {
@@ -36,6 +36,15 @@ define(['./component_map',
          * @public
          */
         this.storrage = new Firebase("https://sweltering-fire-6062.firebaseio.com");
+
+        /**
+         * The loading indicator
+         * @public
+         */
+
+        this.loadingIndicator = $('<div class="loading overlay"><div class="loader center"></div></div>');
+        this.loadingIndicator.css('display', 'none');
+        $('#' + this._parentId).append(this.loadingIndicator);
 
 
     }
@@ -131,14 +140,20 @@ define(['./component_map',
         this.delete(sid);
         //register an put stuff her
         var content = ComponentRequester.render(componentConfig.component, componentConfig.context);
+        var componentMap = ComponentMap.get();
+        var domObject = $(content.string);
         domElement.html(content.string);
+        return this.getComponent(componentMap.getComponent(domObject.attr('id'))['sid']);
     }
 
 
     Context.prototype.insert = function(element, componentConfig) {
 
-        var content = ComponentRequester.render(componentConfig.component, componentConfig.context);
+        var content = ComponentRequester.render(componentConfig.component, componentConfig.context),
+            componentMap = ComponentMap.get();
+        var domObject = $(content.string);
         element.html(content.string);
+        return this.getComponent(componentMap.getComponent(domObject.attr('id'))['sid']);
 
     };
 

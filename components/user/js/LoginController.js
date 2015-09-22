@@ -27,10 +27,6 @@ define(['../../../public/js/lib/promise.js'], function (Promise) {
     LoginController.prototype.start = function () {
 
         var self = this;
-        this._loginContainer = this._root.find('.login-container');
-        this._loadingIndicator = $('<div class="loading overlay"><div class="loader center"></div></div>');
-        this._loadingIndicator.css('display', 'none');
-        this._loginContainer.append(this._loadingIndicator);
 
         this.context.getChildren().then(function(children) {
             console.log(children);
@@ -53,7 +49,7 @@ define(['../../../public/js/lib/promise.js'], function (Promise) {
         };
 
         var self = this;
-        this._loadingIndicator.show();
+        this.context.loadingIndicator.show();
 
         $.ajax({
             url: this._loginUrl,
@@ -68,14 +64,14 @@ define(['../../../public/js/lib/promise.js'], function (Promise) {
             },
             error: function (error) {
                 console.log("ERROR");
-                self._loadingIndicator.fadeOut();
+                self.context.loadingIndicator.fadeOut();
             }
         });
     }
 
     LoginController.prototype._jumpToMainPage = function(sessionKey) {
         window.localStorage.setItem('app-hash', sessionKey);
-        this._loadingIndicator.fadeOut();
+        this.context.loadingIndicator.fadeOut();
         window.location = this._redirectTo;
     }
 
