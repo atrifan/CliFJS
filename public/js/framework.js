@@ -1,4 +1,4 @@
-define(['./context',
+define(['context',
         'componentMap',
         'eventEmitter',
         'promise'], function (Context, ComponentMap, EventEmitter, Promise) {

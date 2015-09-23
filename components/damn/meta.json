@@ -1,0 +1,20 @@
+{
+  "views": {
+    "index": {
+      "css": [],
+      "view": "index.html"
+    },
+    "header": {
+      "css": ["header.css"],
+      "view": "header.html"
+    },
+    "fastBar": {
+      "css": ["fast_bar.css"],
+      "view": "fast_bar.html"
+    },
+    "displayPanel": {
+      "css": ["display_panel.css"],
+      "view": "display_panel.html"
+    }
+  }
+}

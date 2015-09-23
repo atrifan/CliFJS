@@ -6,10 +6,13 @@ requirejs.config({
        'componentMap': '/public/js/component_map',
        'clientProvider': '/public/js/client_provider',
        'modal': '/components/form/js/modal',
-       'promise': '/public/js/lib/promise',
-       'componentRequester': '/public/js/component_requester',
+       'context': '/public/js/context',
        'eventEmitter': '/public/js/lib/EventEmitter',
-       'framework': '/public/js/framework'
+       'framework': '/public/js/framework',
+       'promise': '/public/js/lib/promise',
+       'messaging': '/public/js/messaging',
+       'componentRequester': '/public/js/component_requester',
+       'validator': '/components/form/js/util/Validator'
    }
 });
 function provide(configuration) {
@@ -33,7 +36,7 @@ var provider,
     eventingQueue,
     templateEngine = {};
 
-requirejs(['./messaging', './register_handlebars', 'clientProvider'], function(Messaging, HandleBarsRegister, ClientProvider) {
+requirejs(['messaging', './register_handlebars', 'clientProvider'], function(Messaging, HandleBarsRegister, ClientProvider) {
     eventingQueue = Messaging.get();
     HandleBarsRegister();
     /**

@@ -41,6 +41,7 @@ body {
     background: white !important;
     border-top: 1px solid darkgrey;
     color: blue;
+    clear: both;
     overflow: hidden;
 }
 
@@ -185,7 +186,9 @@ body {
 }
 
 .app-clifJs {
-    position: relative;
+    overflow: visible;
+    height: auto;
+    width: auto;
 }
 
 [type=x-handlebars-template] {

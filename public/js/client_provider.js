@@ -78,13 +78,13 @@ define(['framework', 'promise'], function (Framework, Promise) {
      * @private
      */
     ClientProvider.prototype._renderCss = function (configuration, css, location) {
-        if (!css) {
-            return;
-        }
 
         var deferrers = [];
 
-        var deferred = Promise.defer();
+        if (!css) {
+            configuration.cssLoaded = Promise.all(deferrers);
+            return Promise.all(deferrers);
+        }
 
         var head = $("head"),
             linkElement;
@@ -97,10 +97,10 @@ define(['framework', 'promise'], function (Framework, Promise) {
             if (sameLinks.length === 0) {
                 var deferrer = Promise.defer();
 
-                deferrers.push(deferrer);
+                //deferrers.push(deferrer);
                 linkElement = document.createElement('link');
-                linkElement.type = "text/css";
                 linkElement.rel = "stylesheet";
+                linkElement.type = "text/css";
                 linkElement.href = cssPath;
                 linkElement.onload = function () {
                     deferrer.resolve();
@@ -109,12 +109,8 @@ define(['framework', 'promise'], function (Framework, Promise) {
             }
         }
 
-        configuration.cssLoaded = deferred.promise;
-        Promise.all(deferrer).then(function () {
-            deferred.resolve();
-        }, function (err) {
-            deferred.reject(err);
-        });
+        configuration.cssLoaded = Promise.all(deferrers);
+        return Promise.all(deferrers);
     }
 
     return ClientProvider.get();

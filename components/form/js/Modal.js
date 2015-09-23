@@ -13,14 +13,14 @@ define(['eventEmitter',
         this._overlay = $('<div class="modal-bg overlay"></div>');
         this._modalWrapper = $('<div class="modal-wrapper overlay nobg"></div>');
         this._modalContent = $('<div class="center modal card-wrapper round"></div>');
-        this._closeIcon = $('<div class="close-btn"></div>');
-        this._modalTitle = $('<div class="modal-title card-title"><div class="fTitle"></div>');
+        this._closeIcon = $('<div class="close-icon icon"></div>');
+        this._modalTitle = $('<div class="modal-title card-title"><div class="fTitle"><div class="icon"></div><div class="title"></div></div>');
         this._modalBody = $('<div class="modal-body card-body no-title"></div>');
         this._okBtn = $('<div class="right-container"></div>');
         this._cancelBtn = $('<div class="left-container"></div>');
 
         if(configuration.title) {
-            this._modalTitle.find('.fTitle').text(configuration.title);
+            this._modalTitle.find('.fTitle .title').text(configuration.title);
             this._modalBody.removeClass('no-title');
         }
 
@@ -71,15 +71,24 @@ define(['eventEmitter',
         $('body').append(this._modalWrapper);
 
         var self = this;
-        if(configuration.type == 'SUCCESS' ||
-            configuration.type == 'ERROR') {
+
+        this._modalTitle.find('.fTitle .icon').addClass(configuration.type);
+        if(configuration.type == 'ERROR') {
             this._modalTitle.append(this._closeIcon);
             this._closeIcon.on('click', function () {
-                self.destroy();
+                self._destroy();
                 self.emit('CLOSE');
             });
             this._overlay.css('visibility', 'inherit');
             this._modalWrapper.css('visibility', 'inherit');
+        }
+
+        if(configuration.type == 'SUCCESS') {
+            this._overlay.css('visibility', 'inherit');
+            this._modalWrapper.css('visibility', 'inherit');
+            setTimeout(function () {
+                self._destroy();
+            }, 2000);
         }
 
         if(configuration.type == 'CONFIRM') {
@@ -116,7 +125,7 @@ define(['eventEmitter',
         })
     };
 
-    Modal.prototype.destroy = function () {
+    Modal.prototype._destroy = function () {
         this._modalWrapper.remove();
         this._overlay.remove();
     }

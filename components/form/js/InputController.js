@@ -8,6 +8,7 @@ define([], function () {
     InputController.prototype.start = function () {
         this._root = this.context.getRoot();
         this._inputWrapper = this._root.find('.input-wrapper');
+        this._validationType = this._inputWrapper.data('validationtype');
         this._input = this._root.find('input');
         this._label = this._root.find('.label');
         this._input.on('click', this._click.bind(this));
@@ -19,6 +20,14 @@ define([], function () {
     InputController.prototype._keyPress = function (event) {
         this.emit('keyPress', event);
     }
+
+    InputController.prototype.validationType = function (validationType) {
+        if(typeof validationType == 'undefined') {
+            return this._validationType;
+        }
+
+        this._validationType = validationType;
+    };
 
     InputController.prototype._click = function (event) {
         console.log("CLICK");
@@ -42,13 +51,16 @@ define([], function () {
     InputController.prototype.value = function (value) {
         if(typeof value == 'undefined') {
             if(this._firstTime) {
-                return undefined;
+                return;
+            }
+
+            if(this._input.val().length == 0) {
+                return;
             }
 
             return this._input.val();
         }
 
-        this._input.val(value);
         this._firstTime = false;
         if(("" + value).length == 0) {
             this._firstTime = true;

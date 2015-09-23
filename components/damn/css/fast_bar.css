@@ -1,0 +1,30 @@
+.fast-bar-wrapper {
+    padding: 10px;
+    overflow: hidden;
+    background: -webkit-linear-gradient(#33CCCC, #33CCCB); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#33CCCC, #33CCCB); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#33CCCC, #33CCCB); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#33CCCC, #33CCCB); /* Standard syntax */
+}
+
+.buttons-container {
+    float: right;
+    margin-right: 20px;
+}
+
+.buttons-container .button-style {
+    float: left;
+    border-right: 0.1em solid #33DDEF;
+}
+
+.buttons-container a{
+    color: #fff;
+}
+
+.buttons-container .link:hover .icon{
+    color: #0099CC;
+}
+
+.buttons-container .link:hover a{
+    color: #0099CC;
+}
