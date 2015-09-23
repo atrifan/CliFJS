@@ -1,7 +1,7 @@
 {
   "views": {
     "index": {
-      "css": [],
+      "css": ["damn.css"],
       "view": "index.html"
     },
     "header": {
@@ -15,6 +15,10 @@
     "displayPanel": {
       "css": ["display_panel.css"],
       "view": "display_panel.html"
+    },
+    "options": {
+      "css": ["options.css"],
+      "view": "options.html"
     }
   }
 }

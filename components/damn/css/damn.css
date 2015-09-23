@@ -1,0 +1,14 @@
+.damn-content {
+    overflow: hidden;
+}
+
+.damn-content .options {
+    float: left;
+    width: 12em;
+    padding: 20px 15px;
+    border-right: 1px solid;
+}
+
+.damn-content .overview {
+    float: left;
+}
