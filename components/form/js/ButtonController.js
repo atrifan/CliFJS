@@ -10,6 +10,7 @@ define([], function () {
         this._root = this.context.getRoot();
         this._button = this._root.find('.button');
         this._label = this._root.find('.button-label');
+        this._icon = this._root.find('.icon');
         this._button.on('click', this.click.bind(this));
     };
 

@@ -23,15 +23,20 @@ define(['componentRequester'], function(ComponentRequester) {
             console.log(injectLocation);
             eventingQueue.messageSubscribe(eventName, function (data) {
                 console.log(data);
-                var info = options.fn(data);
+                var info = options.fn(data.context || {});
                 var idInject;
-                if(injectLocation) {
-                    if(data.injectLocation) {
-                        idInject = injectLocation + '-' + data.injectLocation;
-                    }
-                    $('#' + idInject).html(info);
+                var element;
+                if(data.injectLocation) {
+                    idInject = data.injectLocation;
+                    element = $('#' + idInject);
+                    element.html(info);
                 } else {
-                    $('#' + id).html(info);
+                    element = $('#' + id);
+                    element.html(info);
+                }
+
+                if(data.callback) {
+                    data.callback();
                 }
             });
 

@@ -76,3 +76,18 @@
 .LOCK:before {
     content: '\f023';
 }
+
+.ALERT.active {
+    color: #FFFF00;
+}
+.ALERT:before {
+    content: '\f0f3';
+}
+
+.COLLAPSE:before {
+    content: '\f107';
+}
+
+.UP:before {
+    content: '\f106';
+}

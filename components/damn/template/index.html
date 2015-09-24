@@ -7,6 +7,28 @@
             {{component name="damn" view="options" sid="damnOptions"}}
         </div>
         <div class="overview">
+            <div class="events">
+                <div class="card-wrapper round">
+                    <div class="card-title">
+                        <div class="fTitle">
+                            <div class="icon CALENDAR"></div>
+                            <div class="title">Events</div>
+                            <div class="collapse-button">
+                                {{component name="form" view="button" type="link" sid="collapseEvents" hasIcon="true" icon="COLLAPSE"}}
+                            </div>
+                        </div>
+                    </div>
+                    <div id="collapse-calendar" class="card-body no-title collapse">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+{{#onEvent name="collapse" injectLocation=true}}
+    {{#if calendar}}
+        <div class="calendar">
+        </div>
+    {{/if}}
+{{/onEvent}}

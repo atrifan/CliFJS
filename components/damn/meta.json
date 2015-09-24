@@ -2,7 +2,8 @@
   "views": {
     "index": {
       "css": ["damn.css"],
-      "view": "index.html"
+      "view": "index.html",
+      "controller": "DamnController"
     },
     "header": {
       "css": ["header.css"],

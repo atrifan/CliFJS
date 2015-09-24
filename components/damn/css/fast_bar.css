@@ -17,6 +17,10 @@
     border-right: 0.1em solid #33DDEF;
 }
 
+.buttons-container .button-style:last-child {
+    border-right: 0px;
+}
+
 .buttons-container a{
     color: #fff;
 }
