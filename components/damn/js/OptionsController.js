@@ -46,6 +46,7 @@ define([], function() {
     OptionsController.prototype._handleMenuNavigation = function(destination) {
         var arrow;
 
+        this.context.messaging.messagePublish('close-notifications');
         this._navigationMenu[destination].addClass('active');
         arrow = $(this._navigationMenu[destination]._root.parent()[0]).find('.arrow-left');
         $(arrow).addClass('active');

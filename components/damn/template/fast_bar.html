@@ -7,7 +7,27 @@
             {{component name="user" view="logout" sid="logOut" label="Sign Out" hasIcon="true" icon="LOCK"}}
         </div>
         <div class="button-style">
-            {{component name="form" view="button" type="link" sid="home" hasIcon="true" icon="ALERT"}}
+            {{component name="form" view="button" type="link" sid="alert" hasIcon="true" icon="ALERT"}}
+        </div>
+        <div class="button-style calendar-button hidden">
+            {{component name="form" view="button" type="link" sid="calendar" hasIcon="true" icon="CALENDAR"}}
         </div>
     </div>
 </div>
+<div id="collapse-calendar-fast-bar" data-collapselocation="true" class="calendar_fast_bar"></div>
+<div id="collapse-notification-fast-bar" data-collapselocation="true" class="notification_fast_bar"></div>
+
+{{#onEvent name="collapse_data" injectLocation=true}}
+    {{#if calendar}}
+        <div class="arrow-up">
+        </div>
+        <div class="calendar">
+        </div>
+    {{/if}}
+    {{#if notifications}}
+        <div class="arrow-up">
+        </div>
+        <div class="notifications">
+        </div>
+    {{/if}}
+{{/onEvent}}

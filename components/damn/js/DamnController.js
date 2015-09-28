@@ -14,7 +14,7 @@ define([], function() {
         this.context.getChildren().then(function(kids) {
             var eventsButton = self._eventsButton = kids['collapseEvents'];
             eventsButton.on('click', self._showEvents.bind(self));
-        })
+        });
     };
 
     DamnController.prototype._showEvents = function() {

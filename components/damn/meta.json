@@ -11,7 +11,8 @@
     },
     "fastBar": {
       "css": ["fast_bar.css"],
-      "view": "fast_bar.html"
+      "view": "fast_bar.html",
+      "controller": "FastBarController"
     },
     "displayPanel": {
       "css": ["display_panel.css"],

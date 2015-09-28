@@ -21,8 +21,6 @@
     color: #33CCCC;
 }
 
-
-
 .options-wrapper .selections .link:hover a,
         .selections .link:hover .icon:before,
         .selections .link.active a,
@@ -32,62 +30,10 @@
     line-height: 15px !important;
 }
 
-.APP:before {
-    content: '\f21e';
-    font-size: 15px;
-    height: 15px;
-    margin-right: 10px;
-}
-.ACCOUNT:before {
-    content: '\f085';
-    font-size: 15px;
-    height: 15px;
-    margin-right: 10px;
-}
-
-.CLOUD:before {
-    content: '\f06c';
-    font-size: 14px;
-}
-
-.NEWS:before {
-    content: '\f1ea';
-    font-size: 14px;
-}
-.BLOG:before {
-    content: '\f044';
-    font-size: 14px;
-}
-
-.PHOTOS:before {
-    content: '\f030';
-    font-size: 14px;
-}
-
-.VIDEOS:before {
-    content: '\f03d';
-    font-size: 14px;
-}
-
-.FRIENDS:before {
-    content: '\f0c0';
-    font-size: 14px;
-}
-
-.PRIVACY:before {
-    content: '\f084';,
-    font-size: 14px;
-}
-
-.PROFILE:before {
-    content: '\f007';
-    font-size: 14px;
-}
-
 .arrow-left {
     visibility: hidden;
     position: absolute;
-    right: 0px;
+    right: -10px;
 }
 
 .arrow-left.active {

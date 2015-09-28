@@ -118,3 +118,55 @@ body {
     border-bottom: 20px solid transparent;
     border-right: 20px solid #F4F6F8;
 }
+
+.APP:before {
+    content: '\f21e';
+    font-size: 15px;
+    height: 15px;
+    margin-right: 10px;
+}
+.ACCOUNT:before {
+    content: '\f085';
+    font-size: 15px;
+    height: 15px;
+    margin-right: 10px;
+}
+
+.CLOUD:before {
+    content: '\f06c';
+    font-size: 14px;
+}
+
+.NEWS:before {
+    content: '\f1ea';
+    font-size: 14px;
+}
+.BLOG:before {
+    content: '\f044';
+    font-size: 14px;
+}
+
+.PHOTOS:before {
+    content: '\f030';
+    font-size: 14px;
+}
+
+.VIDEOS:before {
+    content: '\f03d';
+    font-size: 14px;
+}
+
+.FRIENDS:before {
+    content: '\f0c0';
+    font-size: 14px;
+}
+
+.PRIVACY:before {
+    content: '\f084';,
+font-size: 14px;
+}
+
+.PROFILE:before {
+    content: '\f007';
+    font-size: 14px;
+}
