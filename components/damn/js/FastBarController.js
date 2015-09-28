@@ -68,6 +68,7 @@ define([], function () {
                 alertPlaceHolder.show();
             } else {
                 alertPlaceHolder.data('hidden', true);
+                this._notificationButton.removeClass('active');
                 alertPlaceHolder.hide();
             }
         }
@@ -105,6 +106,7 @@ define([], function () {
                 calendarPlaceHolder.show();
             } else {
                 calendarPlaceHolder.data('hidden', true);
+                this._calendarButton.removeClass('active');
                 calendarPlaceHolder.hide();
             }
         }
