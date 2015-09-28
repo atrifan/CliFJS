@@ -44,9 +44,16 @@ define([], function() {
     };
 
     OptionsController.prototype._handleMenuNavigation = function(destination) {
+        var arrow;
+
         this._navigationMenu[destination].addClass('active');
+        arrow = $(this._navigationMenu[destination]._root.parent()[0]).find('.arrow-left');
+        $(arrow).addClass('active');
+
         for(var key in this._navigationMenu) {
             if(key != destination) {
+                arrow = $(this._navigationMenu[key]._root.parent()[0]).find('.arrow-left');
+                $(arrow).removeClass('active');
                 this._navigationMenu[key].removeClass('active');
             }
         }
