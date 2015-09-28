@@ -65,5 +65,17 @@ define([], function () {
         this._button.addClass('disabled');
     }
 
+    ButtonController.prototype.addClass = function (className) {
+        this._button.addClass(className);
+    }
+
+    ButtonController.prototype.removeClass = function(className) {
+        this._button.removeClass(className);
+    }
+
+    ButtonController.prototype.hasClass = function (className) {
+        return this._button.hasClass(className);
+    }
+
     return ButtonController;
 })

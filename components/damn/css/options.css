@@ -12,17 +12,25 @@
 }
 
 .options-wrapper .selections .button-label,
-        .selections a{
-    color: #33CCCC !important;
+        .selections a,
+        .selections .icon:before{
+    color: #33CCCC;
 }
+
+
 
 .options-wrapper .selections .link:hover a,
-        .selections .link:hover .icon{
+        .selections .link:hover .icon:before,
+        .selections .link.active a,
+        .selections .link.active .icon:before{
     color: #0099CC !important;
-    font-size: 15px;
-    line-height: 15px;
+    font-size: 15px !important;
+    line-height: 15px !important;
 }
 
+.options-wrapper .selections .link .active {
+
+}
 
 .APP:before {
     content: '\f21e';
@@ -74,4 +82,39 @@
 .PROFILE:before {
     content: '\f007';
     font-size: 14px;
+}
+
+.arrow-up {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+
+    border-bottom: 5px solid black;
+}
+
+.arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+
+    border-top: 20px solid #f00;
+}
+
+.arrow-right {
+    width: 0;
+    height: 0;
+    border-top: 60px solid transparent;
+    border-bottom: 60px solid transparent;
+
+    border-left: 60px solid green;
+}
+
+.arrow-left {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right:10px solid blue;
 }

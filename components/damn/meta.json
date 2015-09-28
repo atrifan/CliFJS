@@ -19,7 +19,8 @@
     },
     "options": {
       "css": ["options.css"],
-      "view": "options.html"
+      "view": "options.html",
+      "controller": "OptionsController"
     }
   }
 }
