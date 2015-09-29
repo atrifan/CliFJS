@@ -7,12 +7,44 @@ body {
     width: 12em;
     padding: 20px 15px;
     background-color: #fff;
-    position: relative
+    position: relative;
+    z-index: 10;
+}
+
+.damn-content .options.active {
+    display: block;
+    z-index: 1000;
+}
+
+.damn-content .options .arrow-up {
+    display: none;
+}
+
+
+.damn-content .options.active .arrow-up {
+    display: none;
+}
+
+@media screen and (max-width: 750px) {
+    .damn-content .options {
+        display: none;
+    }
+
+    .damn-content .options .arrow-up {
+        border-bottom-color: #fff;
+        position: absolute;
+        top: -10px;
+        left: 8px;
+        display: block;
+    }
+
+    .damn-content .options.active .arrow-up {
+        display: block;
+    }
 }
 
 .damn-header {
     position: relative;
-    z-index: 100;
 }
 
 .damn-content .overview {
@@ -30,6 +62,12 @@ body {
     width: 23%;
     max-width: 30em;
     top: 0px;
+}
+
+@media (max-width: 1390px) {
+    .damn-content .overview .events {
+        display: none;
+    }
 }
 
 .damn-content .overview .events .card-wrapper {

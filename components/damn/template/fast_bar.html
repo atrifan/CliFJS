@@ -1,4 +1,7 @@
 <div class="fast-bar-wrapper">
+    <div class="show-menu">
+        {{component name="form" view="button" type="link" sid="menu" hasIcon="true" icon="MENU"}}
+    </div>
     <div class="buttons-container">
         <div class="button-style">
             {{component name="form" view="button" type="link" sid="home" label="Home" hasIcon="true" icon="HOME"}}
@@ -6,10 +9,10 @@
         <div class="button-style">
             {{component name="user" view="logout" sid="logOut" label="Sign Out" hasIcon="true" icon="LOCK"}}
         </div>
-        <div class="button-style">
+        <div class="button-style alert-button">
             {{component name="form" view="button" type="link" sid="alert" hasIcon="true" icon="ALERT"}}
         </div>
-        <div class="button-style calendar-button hidden">
+        <div class="button-style calendar-button">
             {{component name="form" view="button" type="link" sid="calendar" hasIcon="true" icon="CALENDAR"}}
         </div>
     </div>

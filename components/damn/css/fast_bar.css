@@ -7,9 +7,29 @@
     background: linear-gradient(#33CCCC, #33CCCB); /* Standard syntax */
 }
 
+.fast-bar-wrapper .link:hover .icon:before,
+    .link.active .icon:before,
+    .link:hover a,
+    .link.active a{
+    color: #0099CC;
+}
+
 .buttons-container {
     float: right;
     margin-right: 20px;
+}
+
+.show-menu {
+    float: left;
+    visibility: hidden;
+    position: relative;
+}
+
+
+@media screen and (max-width: 750px) {
+    .show-menu {
+        visibility: visible;
+    }
 }
 
 .buttons-container .button-style {
@@ -25,21 +45,33 @@
     color: #fff;
 }
 
-.buttons-container .link:hover .icon:before,
-    .link.active .icon:before,
-    .link:hover a,
-    .link.active a{
-    color: #0099CC;
+.buttons-container .calendar-button {
+    visibility: hidden;
 }
+
 
 .calendar_fast_bar {
     background-color: #fff;
     position: absolute;
-    display: none;
     padding: 10px;
     width: auto;
     right: 30px;
+    display: none
 }
+
+@media screen and (max-width: 1390px) {
+    .buttons-container .calendar-button {
+        visibility: visible;
+    }
+}
+
+@media screen and (min-width: 1390px) {
+    .calendar_fast_bar {
+        display: none !important;
+    }
+}
+
+
 
 .fast-bar-container .arrow-up {
     border-bottom-color: #fff;

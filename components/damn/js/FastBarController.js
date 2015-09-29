@@ -14,12 +14,23 @@ define([], function () {
         this.context.messaging.messageSubscribe('close-notifications', this._closeNotifications.bind(this));
         this.context.getChildren().then(function(kids) {
             var calendarButton = self._calendarButton = kids['calendar'],
-                notificationButton = self._notificationButton = kids['alert'];
+                notificationButton = self._notificationButton = kids['alert'],
+                menuButton = self._menuButton = kids['menu'];
             calendarButton.on('click', self._showCalendar.bind(self));
             notificationButton.on('click', self._showAlerts.bind(self));
+            menuButton.on('click', self._showMenu.bind(self));
         });
     };
 
+    FastBarController.prototype._showMenu = function () {
+        if(this._menuButton.hasClass('active')) {
+            this.context.messaging.messagePublish('hide-menu');
+            this._menuButton.removeClass('active');
+        } else {
+            this.context.messaging.messagePublish('show-menu');
+            this._menuButton.addClass('active');
+        }
+    }
     FastBarController.prototype._closeNotifications = function() {
         if(this._alertPlaceHolder) {
             this._calendarButton.removeClass('active');

@@ -1,37 +1,14 @@
 .display-panel-wrapper {
-    height: 240px;
+    height: 250px;
     width: 100%;
-    border-bottom: 1px solid;
     position: relative;
-}
-
-.personal-info {
-    position: absolute;
-    bottom: -16px;
-    left: 5%;
-}
-
-.personal-info .userName {
-    float: right;
-    font-weight: bold;
-    margin-right: 10px;
-    position: relative;
-    line-height: 45px;
-}
-.personal-info .profile-picture {
-    float: right;
-    height: 60px;
-    width: 60px;
-    border: 1px solid;
     overflow: hidden;
 }
 
-.round-big {
-    border-radius: 50%;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -ms-border-radius: 50%;
-}
 
-.profile-picture img {
+@media screen and (max-width: 750px) {
+    .display-panel-wrapper {
+        border-bottom-color: transparent;
+        height: 52px;
+    }
 }

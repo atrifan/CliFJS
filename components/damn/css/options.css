@@ -39,3 +39,61 @@
 .arrow-left.active {
     visibility: visible;
 }
+
+.personal-info {
+    position: absolute;
+    top: -40px;
+    right: 10px;
+}
+
+.personal-info .userName {
+    float: right;
+    color: #000;
+    font-weight: bold;
+    margin-right: 10px;
+    position: relative;
+    line-height: 45px;
+}
+.personal-info .profile-picture {
+    float: right;
+    height: 60px;
+    width: 60px;
+    border: 1px solid;
+    overflow: hidden;
+}
+
+.round-big {
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -ms-border-radius: 50%;
+}
+
+.profile-picture img {
+}
+
+@media screen and (max-width: 750px) {
+    .personal-info {
+        right: 10px;
+        top: 10px;
+    }
+
+    .personal-info .userName {
+        color: #fff;
+        top: -59px;
+        left: -30px;
+        right: auto;
+    }
+
+    .personal-info .profile-picture {
+        height: 40px;
+        width: 40px;
+        border-color: transparent;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .personal-info .userName {
+        display: none;
+    }
+}

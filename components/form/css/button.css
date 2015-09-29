@@ -91,3 +91,7 @@
 .UP:before {
     content: '\f106';
 }
+
+.MENU:before {
+    content: '\f0c9';
+}

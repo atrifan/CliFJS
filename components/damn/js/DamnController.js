@@ -10,12 +10,24 @@ define([], function() {
 
     DamnController.prototype.start = function () {
         this._root = this.context.getRoot();
+        this._menuWrapper = this._root.find('.damn-content .options');
         var self = this;
+
+        this.context.messaging.messageSubscribe('show-menu', this._showMenu.bind(this));
+        this.context.messaging.messageSubscribe('hide-menu', this._hideMenu.bind(this));
         this.context.getChildren().then(function(kids) {
             var eventsButton = self._eventsButton = kids['collapseEvents'];
             eventsButton.on('click', self._showEvents.bind(self));
         });
     };
+
+    DamnController.prototype._showMenu = function() {
+        this._menuWrapper.addClass('active');
+    }
+
+    DamnController.prototype._hideMenu = function() {
+        this._menuWrapper.removeClass('active');
+    }
 
     DamnController.prototype._showEvents = function() {
         var calendarPlaceHolder = this._root.find('#collapse-calendar');

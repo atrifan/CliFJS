@@ -11,6 +11,7 @@ define([], function() {
     OptionsController.prototype.start = function () {
         var self = this;
         this._navigationMenu = {};
+
         this.context.getChildren().then(function(kids) {
             var newsButton = self._newsButton = kids["news"],
                 profileButton = self._profileButton = kids["profile"],
