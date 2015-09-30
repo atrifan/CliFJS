@@ -34,7 +34,9 @@ function provide(configuration) {
 var provider,
     provisioningStack = [],
     eventingQueue,
-    templateEngine = {};
+    templateEngine = {
+        'gigi': 'barosan'
+    };
 
 requirejs(['messaging', './register_handlebars', 'clientProvider'], function(Messaging, HandleBarsRegister, ClientProvider) {
     eventingQueue = Messaging.get();

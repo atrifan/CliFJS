@@ -1,24 +1,30 @@
 .options-wrapper .title {
     font-weight: bold;
     padding: 10px;
+    font-size: 20px;
     border-bottom: 1px solid;
 }
 
+.options-wrapper .title .icon:before {
+    font-size: 20px;
+}
 .options-wrapper .option {
-    min-height: 33px;
+    min-height: 50px;
 }
 
 .options-wrapper .selections {
     clear: both;
     overflow: hidden;
     display: block;
-    padding: 9px 15px;
+    padding: 15px 15px;
 }
 
 .options-wrapper .selections .button-label,
         .selections a,
         .selections .icon:before{
     color: #33CCCC;
+    font-size: 18px;
+    line-height: 18px;
 }
 
 .options-wrapper .selections .link:hover a,
@@ -26,14 +32,51 @@
         .selections .link.active a,
         .selections .link.active .icon:before{
     color: #0099CC !important;
-    font-size: 15px !important;
-    line-height: 15px !important;
+    font-size: 19px !important;
+    line-height: 19px !important;
 }
 
+
+@media screen and (min-width: 2800px) {
+    .options-wrapper .title {
+        font-size: 45px;
+        line-height: 45px;
+        padding: 20px;
+    }
+
+    .options-wrapper .selections {
+        clear: both;
+        overflow: hidden;
+        display: block;
+        padding: 25px 25px;
+    }
+
+    .options-wrapper .title .icon:before {
+        font-size: 45px;
+    }
+    .options-wrapper .option {
+        min-height: 80px;
+    }
+
+    .options-wrapper .selections .button-label,
+    .selections a,
+    .selections .icon:before{
+        font-size: 40px !important;
+        line-height: 40px !important;
+    }
+
+    .options-wrapper .selections .link:hover a,
+    .selections .link:hover .icon:before,
+    .selections .link.active a,
+    .selections .link.active .icon:before{
+        font-size: 44px !important;
+        line-height: 44px !important;
+    }
+}
 .arrow-left {
     visibility: hidden;
     position: absolute;
-    right: -10px;
+    right: 0px;
 }
 
 .arrow-left.active {
@@ -72,23 +115,82 @@
 .profile-picture img {
 }
 
-@media screen and (max-width: 750px) {
+@media only screen and (max-width: 750px),
+only screen and (min-device-width: 320px)
+and (max-device-width: 750px){
     .personal-info {
         right: 10px;
-        top: 10px;
+        top: 5px;
     }
 
     .personal-info .userName {
         color: #fff;
-        top: -59px;
-        left: -30px;
+        top: -69px;
+        left: -115%;
         right: auto;
+        font-size: 28px !important;
     }
 
     .personal-info .profile-picture {
-        height: 40px;
-        width: 40px;
+        height: 70px;
+        width: 70px;
         border-color: transparent;
+    }
+
+    .options-wrapper .title {
+        font-weight: bold;
+        border-bottom: 1px solid;
+        font-size: 30px;
+        line-height: 30px;
+        padding: 15px;
+    }
+
+    .options-wrapper .title .icon:before{
+        font-size: 30px;
+        line-height: 30px;
+    }
+
+    .options-wrapper .option {
+        min-height: 50px;
+    }
+
+    .options-wrapper .selections {
+        clear: both;
+        overflow: hidden;
+        display: block;
+        padding: 9px 15px;
+    }
+
+    .options-wrapper .selections .button-label,
+    .selections a,
+    .selections .icon:before{
+        color: #33CCCC;
+        font-size: 28px !important;
+        line-height: 28px !important;
+    }
+
+    .options-wrapper .selections .button-label a{
+        margin-left: 20px;
+    }
+
+    .options-wrapper .selections .link:hover a,
+    .selections .link:hover .icon:before,
+    .selections .link.active a,
+    .selections .link.active .icon:before{
+        color: #0099CC !important;
+        font-size: 30px !important;
+        line-height: 30px !important;
+    }
+}
+
+@media screen and (min-width: 2800px) {
+    .personal-info .profile-picture {
+        height: 90px;
+        width: 90px;
+    }
+
+    .personal-info .userName {
+        font-size: 30px;
     }
 }
 

@@ -15,9 +15,10 @@ define(['promise',
 
         var componentMap = ComponentMap.get();
 
+        var deferred = Promise.defer();
         componentMap.registerComponent(id, {
             sid: sid,
-            controller: Promise.defer()
+            controller: deferred
         });
 
         setTimeout(function () {

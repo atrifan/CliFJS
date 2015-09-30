@@ -11,13 +11,31 @@ define([], function() {
     DamnController.prototype.start = function () {
         this._root = this.context.getRoot();
         this._menuWrapper = this._root.find('.damn-content .options');
+        this._contentWrapper = this._root.find('.damn-content .content');
         var self = this;
 
         this.context.messaging.messageSubscribe('show-menu', this._showMenu.bind(this));
         this.context.messaging.messageSubscribe('hide-menu', this._hideMenu.bind(this));
         this.context.getChildren().then(function(kids) {
-            var eventsButton = self._eventsButton = kids['collapseEvents'];
+            var eventsButton = self._eventsButton = kids['collapseEvents'],
+                damnOptions = self._damnOptions = kids['damnOptions'];
+
+            console.log(damnOptions);
             eventsButton.on('click', self._showEvents.bind(self));
+            damnOptions.on('render', self._showView.bind(self));
+        });
+    };
+
+    DamnController.prototype._showView = function(event) {
+        var self = this;
+        this.context.insert(this._contentWrapper, {
+            component: {
+                name: 'damn',
+                view: event
+            },
+            context: {}
+        }).then(function(controller) {
+            self._currentView = controller;
         });
     };
 

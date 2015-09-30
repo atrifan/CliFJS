@@ -52,6 +52,8 @@ define([], function() {
         arrow = $(this._navigationMenu[destination]._root.parent()[0]).find('.arrow-left');
         $(arrow).addClass('active');
 
+        this.emit('render', destination);
+
         for(var key in this._navigationMenu) {
             if(key != destination) {
                 arrow = $(this._navigationMenu[key]._root.parent()[0]).find('.arrow-left');

@@ -72,7 +72,7 @@ define(['componentMap',
         var componentMap = ComponentMap.get().getComponentMap();
         for (var component in componentMap) {
             if (componentMap[component].sid === sid) {
-                return componentMap[component].controller;
+                return componentMap[component].controller.promise;
             }
         }
     }
@@ -83,7 +83,7 @@ define(['componentMap',
         var theChildren = {};
         for(var i = 0; i < children.length; i++) {
             if(componentMap[children[i]]) {
-                theChildren[children[i]] = componentMap[children[i]].controller;
+                theChildren[children[i]] = componentMap[children[i]].controller.promise;
             }
         }
 
@@ -161,7 +161,7 @@ define(['componentMap',
         var domElement = $.parseHTML(unescapeHTML(this._templates[templateId](templateContext).trim()));
         location.append(domElement);
         return domElement;
-    }
+    };
 
     function unescapeHTML(p_string)
     {

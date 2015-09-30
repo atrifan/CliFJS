@@ -4,11 +4,25 @@ body {
 
 .damn-content .options {
     float: left;
-    width: 12em;
+    width: 220px;
     padding: 20px 15px;
     background-color: #fff;
     position: relative;
     z-index: 10;
+}
+
+.damn-content .content {
+    overflow: hidden;
+    padding: 40px;
+    width: 60%;
+    min-height: 400px;
+    position: relative;
+}
+
+@media screen and (min-width: 2800px) {
+    .damn-content .options {
+        width: 700px;
+    }
 }
 
 .damn-content .options.active {
@@ -25,22 +39,27 @@ body {
     display: none;
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 750px),
+screen and (min-device-width: 320px)
+and (max-device-width: 750px){
     .damn-content .options {
         display: none;
+        width: 450px;
     }
 
     .damn-content .options .arrow-up {
-        border-bottom-color: #fff;
         position: absolute;
-        top: -10px;
-        left: 8px;
+        top: -18px;
+        left: 20px;
+        border-bottom-color: #fff;
         display: block;
     }
 
     .damn-content .options.active .arrow-up {
         display: block;
     }
+
+
 }
 
 .damn-header {
@@ -49,10 +68,10 @@ body {
 
 .damn-content .overview {
     position: relative;
-    width: auto;
     margin-left: 0px;
     margin-right: 0px;
     padding: 10px;
+    width: 100%;
 }
 
 .damn-content .overview .events {
@@ -64,7 +83,9 @@ body {
     top: 0px;
 }
 
-@media (max-width: 1390px) {
+@media screen and (max-width: 4200px),
+screen and (min-device-width: 320px)
+and (max-device-width: 750px){
     .damn-content .overview .events {
         display: none;
     }
@@ -201,7 +222,7 @@ body {
 
 .PRIVACY:before {
     content: '\f084';,
-font-size: 14px;
+    font-size: 14px;
 }
 
 .PROFILE:before {

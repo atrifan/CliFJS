@@ -57,7 +57,7 @@ define(['context',
             self = this,
             controllerToResolve;
 
-        var deferred = $.Deferred();
+        var deferred = Promise.defer();
         this._fetchTemplates(config).then(function() {
             if (ComponentMap.get().getComponent(id)) {
                 //TODO: do something here cause it is wrong
@@ -65,7 +65,7 @@ define(['context',
                 var componentMap = ComponentMap.get().getComponentMap();
                 componentMap[id].sid = config.sid;
             } else {
-                var deferredController = $.Deferred();
+                var deferredController = Promise.defer();
                 ComponentMap.get().registerComponent(id, {
                     sid: config.sid,
                     controller: deferredController
@@ -74,13 +74,14 @@ define(['context',
 
             var ids = ComponentMap.get()._getDeps(id);
             for (var i = 0; i < ids.length; i++) {
-                var futureController = $.Deferred();
+                var futureController = Promise.defer();
                 ComponentMap.get().registerComponent(ids[i], {
                     controller: futureController
                 });
             }
 
             controllerToResolve = ComponentMap.get().getComponent(id).controller;
+            console.log(controllerToResolve);
 
             if (!config.clientController) {
                 deferred.resolve({
@@ -106,12 +107,13 @@ define(['context',
             console.log("DA FUQ");
         });
 
-        return deferred.promise();
+        return deferred.promise;
     }
 
     Framework.prototype._fetchTemplates = function(config) {
         var templates = config.templates || [],
             resolvedTemplates = [];
+
 
         var deferred = Promise.defer();
         for(var i = 0; i < templates.length; i++) {

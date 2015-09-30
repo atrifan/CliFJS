@@ -6,9 +6,18 @@
 }
 
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 750px),
+    screen and (min-device-width: 320px)
+    and (max-device-width: 750px){
     .display-panel-wrapper {
         border-bottom-color: transparent;
-        height: 52px;
+        height: 85px;
+    }
+}
+
+@media screen and (min-width: 2800px) {
+    .display-panel-wrapper {
+        border-bottom-color: transparent;
+        height: 420px;
     }
 }

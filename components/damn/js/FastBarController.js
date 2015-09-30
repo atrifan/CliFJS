@@ -30,7 +30,9 @@ define([], function () {
             this.context.messaging.messagePublish('show-menu');
             this._menuButton.addClass('active');
         }
-    }
+    };
+
+
     FastBarController.prototype._closeNotifications = function() {
         if(this._alertPlaceHolder) {
             this._calendarButton.removeClass('active');
@@ -45,6 +47,10 @@ define([], function () {
             this._calendarPlaceHolder.html('');
             this._calendarPlaceHolder.hide();
         }
+
+        this._menuButton.removeClass('active');
+
+        this.context.messaging.messagePublish('hide-menu');
     };
 
     FastBarController.prototype._showAlerts = function() {

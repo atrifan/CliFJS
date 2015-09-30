@@ -1,0 +1,38 @@
+.news-wrapper .round {
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -ms-border-radius: 10px;
+}
+.news-wrapper .card-title .title {
+    display: inline-block;
+    margin-left: 12px;
+}
+.news-wrapper .card-title .icon:before {
+    font-size: 32px;
+}
+
+.news-wrapper .card-title .date {
+    font-size: 17px;
+    color: black;
+}
+
+.news-wrapper .card-body {
+    font-size: 20px;
+    color: black;
+}
+.news-wrapper .collapse-button {
+    float: right
+}
+
+.news-wrapper .collapse-button .COLLAPSE:before,
+.UP:before{
+    font-size: 32px !important;
+    color: #33CCCC !important;
+    line-height: 32px !important;
+}
+
+.news-wrapper .collapse-button .link:hover .COLLAPSE:before,
+.link:hover .UP:before{
+    color: #0099CC !important;
+}

@@ -22,6 +22,12 @@
       "css": ["options.css"],
       "view": "options.html",
       "controller": "OptionsController"
+    },
+    "news": {
+      "css": ["news.css"],
+      "view": "news.html",
+      "controller": "NewsController"
     }
-  }
+  },
+  "templates": ["news_entry.html"]
 }
