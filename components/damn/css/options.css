@@ -125,29 +125,29 @@ and (max-device-width: 750px){
 
     .personal-info .userName {
         color: #fff;
-        top: -69px;
-        left: -115%;
+        top: -75px;
+        left: -150px;
         right: auto;
-        font-size: 28px !important;
+        font-size: 40px !important;
     }
 
     .personal-info .profile-picture {
-        height: 70px;
-        width: 70px;
+        height: 80px;
+        width: 80px;
         border-color: transparent;
     }
 
     .options-wrapper .title {
         font-weight: bold;
         border-bottom: 1px solid;
-        font-size: 30px;
-        line-height: 30px;
+        font-size: 42px;
+        line-height: 42px;
         padding: 15px;
     }
 
     .options-wrapper .title .icon:before{
-        font-size: 30px;
-        line-height: 30px;
+        font-size: 42px;
+        line-height: 42px;
     }
 
     .options-wrapper .option {
@@ -165,8 +165,8 @@ and (max-device-width: 750px){
     .selections a,
     .selections .icon:before{
         color: #33CCCC;
-        font-size: 28px !important;
-        line-height: 28px !important;
+        font-size: 40px !important;
+        line-height: 40px !important;
     }
 
     .options-wrapper .selections .button-label a{
@@ -178,8 +178,8 @@ and (max-device-width: 750px){
     .selections .link.active a,
     .selections .link.active .icon:before{
         color: #0099CC !important;
-        font-size: 30px !important;
-        line-height: 30px !important;
+        font-size: 41px !important;
+        line-height: 41px !important;
     }
 }
 

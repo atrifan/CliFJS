@@ -80,8 +80,8 @@ and (max-device-width: 750px) {
 
     .show-menu .icon:before,
     .show-menu .link{
-        font-size: 28px !important;
-        line-height: 28px !important
+        font-size: 40px !important;
+        line-height: 40px !important
     }
 
     .show-menu {
@@ -93,8 +93,8 @@ and (max-device-width: 750px) {
     }
 
     .buttons-container .icon:before {
-        font-size: 28px !important;
-        line-height: 28px !important
+        font-size: 40px !important;
+        line-height: 40px !important
     }
 
     .buttons-container .button-style {
@@ -103,12 +103,12 @@ and (max-device-width: 750px) {
     }
 
     .buttons-container a{
-        font-size: 28px !important;
-        line-height: 28px !important;
+        font-size: 40px !important;
+        line-height: 40px !important;
     }
 
     .calendar_fast_bar {
-        right: 40px;
+        right: 50px;
     }
 
     .fast-bar-container .arrow-up {
@@ -117,7 +117,7 @@ and (max-device-width: 750px) {
     }
 
     .notification_fast_bar {
-        right: 120px;
+        right: 140px;
         width: 320px;
         height: 400px;
     }
