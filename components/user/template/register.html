@@ -12,12 +12,12 @@
                     <div class="form-key">{{textToShow}}</div>
                     <div class="form-value">
                         {{component name="form" view=view type=type
-                            hasLabel="false" value=value label=label sid=requestKey validationType=validationType}}
+                            hasLabel="false" value=value label=label sid=requestKey validationType=validationType parentId=parentId}}
                     </div>
                 </div>
             {{/each}}
             <div class="right-container">
-                {{component name="form" view="button" label="Register" sid="register" type="primary"}}
+                {{component name="form" view="button" label="Register" sid="register" type="primary" parentId=parentId}}
             </div>
         </div>
     </div>

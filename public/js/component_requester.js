@@ -5,7 +5,7 @@ define(['promise',
         'componentMap'], function (Promise, ComponentMap) {
 
     function renderComponent(component, context) {
-        var id = Math.floor(Date.now() / (Math.random() * 1001) * Math.floor(Math.random() * 1001));
+        var id = incrementalId++;
         /**
          * Gets the required component's configuration from the meta.json in it's folder.
          */
@@ -20,6 +20,10 @@ define(['promise',
             sid: sid,
             controller: deferred
         });
+
+        if(typeof component.parentId !== 'undefined') {
+            componentMap.addDependency(component.parentId, id);
+        }
 
         setTimeout(function () {
             $.get('../../components/' + componentName + '/meta.json', function (config) {
@@ -42,7 +46,10 @@ define(['promise',
 
                     //TODO: maybe it should support if no template an index.html
                 $.get(componentURI + '/template/' + template, function (html) {
-                    var content = Handlebars.compile(html)(context || {});
+                    var runWithContext = context || {};
+
+                    runWithContext['parentId'] = id;
+                    var content = Handlebars.compile(html)(runWithContext);
                     var componentConfig = {
                         content: content,
                         clientController: controller,

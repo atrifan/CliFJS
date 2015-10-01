@@ -1,7 +1,7 @@
 /**
  * Created by atrifan on 9/24/2015.
  */
-define([], function() {
+define(['promise'], function(Promise) {
     function DamnController() {
 
     }
@@ -20,10 +20,9 @@ define([], function() {
             var eventsButton = self._eventsButton = kids['collapseEvents'],
                 damnOptions = self._damnOptions = kids['damnOptions'];
 
-            console.log(damnOptions);
-            eventsButton.on('click', self._showEvents.bind(self));
             damnOptions.on('render', self._showView.bind(self));
         });
+
     };
 
     DamnController.prototype._showView = function(event) {

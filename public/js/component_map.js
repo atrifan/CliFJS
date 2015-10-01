@@ -64,7 +64,9 @@ define([], function () {
      */
     ComponentMap.prototype.registerComponent = function (id, configuration) {
         this._componentMap[id] = configuration;
+        this._componentMap[id]['_deps'] = [];
     };
+
 
     /**
      * Removes a component with a specific id from the componentMap.
@@ -84,15 +86,23 @@ define([], function () {
     };
 
     ComponentMap.prototype._getDeps = function (id) {
-        var children  = $('#' + id).find('.app-clifJs'),
+       /* var children  = $('#' + id).find('.app-clifJs'),
             childrenIds = [];
 
         for(var i = 0, len = children.length; i < len; i++) {
             childrenIds.push($(children[i]).attr('id'));
         }
 
-        return childrenIds;
+        return childrenIds;*/
+        return this._componentMap[id]['_deps'];
     }
+
+    ComponentMap.prototype.addDependency = function (id, childId) {
+        if(id == -1) {
+            return;
+        }
+        this._componentMap[id]['_deps'].push(childId);
+    };
 
     /**
      * Empties the client componentMap.

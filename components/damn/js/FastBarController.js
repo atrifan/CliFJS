@@ -1,7 +1,7 @@
 /**
  * Created by alexandru.trifan on 28.09.2015.
  */
-define([], function () {
+define(['promise'], function (Promise) {
     function FastBarController() {}
 
     FastBarController.prototype.init = function () {
@@ -20,6 +20,7 @@ define([], function () {
             notificationButton.on('click', self._showAlerts.bind(self));
             menuButton.on('click', self._showMenu.bind(self));
         });
+
     };
 
     FastBarController.prototype._showMenu = function () {
@@ -48,7 +49,9 @@ define([], function () {
             this._calendarPlaceHolder.hide();
         }
 
-        this._menuButton.removeClass('active');
+        if(this._menuButton) {
+            this._menuButton.removeClass('active');
+        }
 
         this.context.messaging.messagePublish('hide-menu');
     };

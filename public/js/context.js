@@ -78,6 +78,7 @@ define(['componentMap',
     }
 
     Context.prototype.getChildren = function() {
+        var self = this;
         var componentMap = ComponentMap.get().getComponentMap();
         var children = ComponentMap.get()._getDeps(this._parentId);
         var theChildren = {};
@@ -95,15 +96,15 @@ define(['componentMap',
                 resolvedChildren[ComponentMap.get().getComponent(ids[i]).sid] = data[ids[i]];
             }
             deferred.resolve(resolvedChildren);
+        }, function (err) {
+            throw Error(err);
         });
         return deferred.promise;
     };
 
 
     Context.prototype.delete = function (sid) {
-        console.log('deleting', sid);
         var componentMap = ComponentMap.get().getComponentMap();
-        console.log(componentMap.length);
         for (var component in componentMap) {
             if (componentMap[component].sid === sid || component === sid) {
                 sid = componentMap[component].sid;
@@ -116,7 +117,6 @@ define(['componentMap',
                 var domElement = $('#' + component);
                 var results = ComponentMap.get()._getDeps(component);
                 for (var i = 0, len = results.length; i < len; i++) {
-                    console.log("element", results[i]);
                     this.delete(results[i]);
                 }
                 domElement.remove();
@@ -149,6 +149,7 @@ define(['componentMap',
 
     Context.prototype.insert = function(element, componentConfig) {
 
+        componentConfig.component['parentId'] = this._parentId;
         var content = ComponentRequester.render(componentConfig.component, componentConfig.context),
             componentMap = ComponentMap.get();
         var domObject = $(content.string);

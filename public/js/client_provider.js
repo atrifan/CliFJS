@@ -51,6 +51,7 @@ define(['framework', 'promise'], function (Framework, Promise) {
                         loadingIndicator.remove();
                     });
                 }, function (err) {
+                    throw Error(err);
                     //TODO: do something here
                 });
             } else {
@@ -60,10 +61,12 @@ define(['framework', 'promise'], function (Framework, Promise) {
                     loadingIndicator.fadeOut();
                     loadingIndicator.remove();
                 }, function (err) {
+                    throw Error(err);
                     //TODO: do something here
                 });
             }
         }, function (err) {
+            throw Error(err);
             //TODO: show an error
             //show an error box;
         });
@@ -104,7 +107,7 @@ define(['framework', 'promise'], function (Framework, Promise) {
                 linkElement.href = cssPath;
                 linkElement.onload = function () {
                     deferrer.resolve();
-                }
+                };
                 head.append(linkElement);
             }
         }

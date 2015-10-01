@@ -1,38 +1,16 @@
 <div class="damn-wrapper">
     <div class="damn-header">
-        {{component name="damn" view="header" sid="damnHeader"}}
+        {{component name="damn" view="header" sid="damnHeader" parentId=parentId}}
     </div>
     <div class="damn-content">
         <div class="options">
             <div class="arrow-up">
             </div>
-            {{component name="damn" view="options" sid="damnOptions"}}
+            {{component name="damn" view="options" sid="damnOptions" parentId=parentId}}
         </div>
         <div class="overview">
             <div class="content">
             </div>
-            <div class="events">
-                <div class="card-wrapper round">
-                    <div class="card-title">
-                        <div class="fTitle">
-                            <div class="icon CALENDAR"></div>
-                            <div class="title">Events</div>
-                            <div class="collapse-button">
-                                {{component name="form" view="button" type="link" sid="collapseEvents" hasIcon="true" icon="COLLAPSE"}}
-                            </div>
-                        </div>
-                    </div>
-                    <div id="collapse-calendar" class="card-body no-title collapse">
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
-
-{{#onEvent name="collapse" injectLocation=true}}
-    {{#if calendar}}
-        <div class="calendar">
-        </div>
-    {{/if}}
-{{/onEvent}}

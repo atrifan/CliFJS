@@ -1,7 +1,7 @@
 /**
  * Created by atrifan on 9/28/2015.
  */
-define([], function() {
+define(['promise'], function(Promise) {
     function OptionsController() {}
 
     OptionsController.prototype.init = function () {
@@ -41,7 +41,9 @@ define([], function() {
             videosButton.on('click', self._handleMenuNavigation.bind(self, 'videos'));
             cloudButton.on('click', self._handleMenuNavigation.bind(self, 'cloud'));
             privacyButton.on('click', self._handleMenuNavigation.bind(self, 'privacy'));
+
         });
+
     };
 
     OptionsController.prototype._handleMenuNavigation = function(destination) {

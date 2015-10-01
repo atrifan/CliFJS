@@ -81,7 +81,6 @@ define(['context',
             }
 
             controllerToResolve = ComponentMap.get().getComponent(id).controller;
-            console.log(controllerToResolve);
 
             if (!config.clientController) {
                 deferred.resolve({
@@ -99,12 +98,12 @@ define(['context',
                         promisedController: controllerToResolve
                     });
                 }, function (err) {
-                    throw err.stack;
+                    throw Error(err);
                     deferred.resolve();
                 });
             }
         }, function(err) {
-            console.log("DA FUQ");
+            throw Error(err);
         });
 
         return deferred.promise;
@@ -126,6 +125,8 @@ define(['context',
                 config["templateInfo"][data[i].id] = data[i].templateData;
             }
             deferred.resolve();
+        }, function (err) {
+            throw Error(err);
         });
 
         return deferred.promise;

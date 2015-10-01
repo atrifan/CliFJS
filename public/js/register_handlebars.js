@@ -6,7 +6,6 @@ define(['componentRequester'], function(ComponentRequester) {
     function _registerEventHandler(event, options) {
         eventingQueue.messageSubscribe(event, function (data) {
             var info = options.fn(data.context || {});
-            console.log(info);
             var idInject;
             var element;
             if(data.injectLocation) {
@@ -30,9 +29,11 @@ define(['componentRequester'], function(ComponentRequester) {
             var componentData = {
                     name: options.hash.name,
                     view: options.hash.view || "index",
-                    sid: options.hash.sid
+                    sid: options.hash.sid,
+                    parentId: options.hash.parentId
                 },
                 context = options.hash;
+
 
             return ComponentRequester.render(componentData, context);
         });

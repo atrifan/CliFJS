@@ -11,18 +11,18 @@
                 <div class="form-key">User name:</div>
                 <div class="form-value">
                     {{component name="form" view="input" type="text" hasLabel="false" value="Enter username" sid="userName"
-                    validationType="notNull"}}
+                    validationType="notNull" parentId=parentId}}
                 </div>
             </div>
             <div class="form-key-value">
                 <label class="form-key">Password:</label>
                 <div class="form-value">
                     {{component name="form" view="input" hasLabel="false" type="password" sid="password"
-                    validationType="notNull"}}
+                    validationType="notNull" parentId=parentId}}
                 </div>
             </div>
             <div class="right-container">
-                {{component name="form" view="button" label="Login" sid="loginButton" type="primary"}}
+                {{component name="form" view="button" label="Login" sid="loginButton" type="primary" parentId=parentId}}
             </div>
         </div>
     </div>
