@@ -1,18 +1,23 @@
 /**
  * Created by atrifan on 7/22/2015.
  */
+var url = window.location.pathname;
+url = url.split('/');
+var baseLocation = url.indexOf('public');
+var appLocation = url.slice(0, baseLocation);
+appLocation = appLocation.join('/');
 requirejs.config({
    paths: {
-       'componentMap': '/public/js/component_map',
-       'clientProvider': '/public/js/client_provider',
-       'modal': '/components/form/js/modal',
-       'context': '/public/js/context',
-       'eventEmitter': '/public/js/lib/EventEmitter',
-       'framework': '/public/js/framework',
-       'promise': '/public/js/lib/promise',
-       'messaging': '/public/js/messaging',
-       'componentRequester': '/public/js/component_requester',
-       'validator': '/components/form/js/util/Validator'
+       'componentMap': appLocation + '/public/js/component_map',
+       'clientProvider': appLocation + '/public/js/client_provider',
+       'modal': appLocation + '/components/form/js/modal',
+       'context': appLocation + '/public/js/context',
+       'eventEmitter': appLocation + '/public/js/lib/EventEmitter',
+       'framework': appLocation + '/public/js/framework',
+       'promise': appLocation + '/public/js/lib/promise',
+       'messaging': appLocation + '/public/js/messaging',
+       'componentRequester': appLocation + '/public/js/component_requester',
+       'validator': appLocation + '/components/form/js/util/Validator'
    }
 });
 function provide(configuration) {
