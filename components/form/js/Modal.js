@@ -20,12 +20,13 @@ define(['eventEmitter',
         this._cancelBtn = $('<div class="left-container"></div>');
 
         if(configuration.title) {
+            console.log(configuration.title);
             this._modalTitle.find('.fTitle .title').text(configuration.title);
             this._modalBody.removeClass('no-title');
         }
 
         if(configuration.message) {
-            this._modalBody.text(configuration.message);
+            this._modalBody.html(configuration.message);
         }
 
         var confirmButton = {

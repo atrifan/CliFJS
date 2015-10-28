@@ -1,0 +1,10 @@
+{
+  "views": {
+    "index": {
+      "css": ["wordGame.css"],
+      "controller": "WordGame",
+      "view": "index.html"
+    }
+  },
+  "templates": ["user.html", "word.html"]
+}
