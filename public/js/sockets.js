@@ -20,7 +20,6 @@ define([], function () {
 
     SocketRegistry.prototype.registerSocket = function (channel) {
         var self = this;
-        console.log(channel);
         if(channel.charAt(0) != "/") {
             channel = "/" + channel;
         }
@@ -55,7 +54,6 @@ define([], function () {
                 }
             }
         }
-
 
         return socket;
 
