@@ -10,14 +10,16 @@ requirejs.config({
    paths: {
        'componentMap': appLocation + '/public/js/component_map',
        'clientProvider': appLocation + '/public/js/client_provider',
-       'modal': appLocation + '/components/form/js/modal',
+       'modal': appLocation + '/components/form/js/Modal',
        'context': appLocation + '/public/js/context',
        'eventEmitter': appLocation + '/public/js/lib/EventEmitter',
        'framework': appLocation + '/public/js/framework',
        'promise': appLocation + '/public/js/lib/promise',
+       'socket.io': appLocation + '/public/js/lib/socket.io',
        'messaging': appLocation + '/public/js/messaging',
        'componentRequester': appLocation + '/public/js/component_requester',
-       'validator': appLocation + '/components/form/js/util/Validator'
+       'validator': appLocation + '/components/form/js/util/Validator',
+       'sockets': appLocation + '/public/js/sockets'
    }
 });
 function provide(configuration) {

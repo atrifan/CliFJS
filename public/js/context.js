@@ -1,7 +1,8 @@
 define(['componentMap',
         'promise',
-        'componentRequester'
-        ], function (ComponentMap, Promise, ComponentRequester) {
+        'componentRequester',
+        'sockets'
+        ], function (ComponentMap, Promise, ComponentRequester, Socket) {
 
     /**
      * The component's controller execution context this module is being injected in the controller
@@ -59,6 +60,15 @@ define(['componentMap',
      */
     Context.prototype.getRoot = function () {
         return $('#' + this._parentId);
+    };
+
+    /**
+     * Connects to server via webSockets on a channel inputed by the developer
+     * @param channel
+     * @returns {*}
+     */
+    Context.prototype.getSocketToServer = function (channel) {
+        return Socket.get().registerSocket(channel)
     };
 
     /**
@@ -158,8 +168,15 @@ define(['componentMap',
 
     };
 
+    Context.prototype.appendTemplate = function(templateId, templateContext, location) {
+        var domElement = $.parseHTML(unescapeHTML(this._templates[templateId](templateContext).trim()));
+        location.append(domElement);
+        return domElement;
+    };
+
     Context.prototype.insertTemplate = function(templateId, templateContext, location) {
         var domElement = $.parseHTML(unescapeHTML(this._templates[templateId](templateContext).trim()));
+        location.html('');
         location.append(domElement);
         return domElement;
     };
