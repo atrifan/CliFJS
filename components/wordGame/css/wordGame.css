@@ -1,0 +1,69 @@
+.wordGameWrapper {
+    overflow: hidden;
+    padding: 9px;
+    height: auto;
+    width: auto;
+    visibility: hidden;
+}
+
+.wordGameWrapper .gameContainer {
+    overflow: hidden;
+    padding: 12px;
+    height: 520px;
+    float: left;
+    border: 1px solid;
+}
+
+.gameContainer .playable-area {
+    float: left;
+    width: 600px;
+    position: relative;
+    height: auto;
+    padding: 20px;
+    height: 500px;
+}
+
+.gameContainer .words-wrapper {
+    float: left;
+    width: 300px;
+    margin-left: 40px;
+}
+
+.gameContainer .words-wrapper .card-body {
+    height: 410px;
+    overflow-y: auto;
+}
+
+.playable-area .playable {
+    position: absolute;
+    bottom: 10px;
+    margin-left: -17px;
+}
+
+.playable-area .letters {
+    background-color: #fff;
+    height: 450px;
+    padding-left: 9px;
+    margin-left: 9px;
+    width: 100%;
+}
+
+.playable .playable .input,
+    .playable input,
+    .playable .input-wrapper{
+    overflow: visible;
+    width: 100%;
+}
+
+.wordGameWrapper .users-container {
+    float: left;
+    overflow: hidden;
+    padding: 5px;
+    width: 25%;
+    height: 520px;
+}
+
+.PROFILE:before {
+    content: '\f007';
+    font-size: 14px;
+}
