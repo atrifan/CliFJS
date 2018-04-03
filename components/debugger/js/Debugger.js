@@ -26,7 +26,7 @@ define(['modal'], function (Modal) {
         // this._chooseUserName();
         this._root = this.context.getRoot();
 
-        this.context.insert(this._root.find('.left-container'), {
+        this.context.insert(this._root.find('.files_folders'), {
             component: {
                 name: "debugger",
                 view: "files_folders"

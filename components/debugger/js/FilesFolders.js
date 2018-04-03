@@ -20,12 +20,33 @@ define(['modal'], function (Modal) {
     };
 
     FilesFolders.prototype.start = function () {
-        // this._root = this.context.getRoot();
+        this._root = this.context.getRoot();
+        var self = this;
+        this._root.find('.folder').on('click', function(e) {
+            self._folderClick(e, this)
+        });
+        this._root.find('.file').on('click', function(e) {
+            self._fileClick(e, this)
+        })
         // this._gameWrapper = this._root.find('.wordGameWrapper');
         // this._usersContainer = this._root.find('.users-container');
         // this._chooseUserName();
 
     }
+
+    FilesFolders.prototype._folderClick = function(e, context) {
+        e.stopPropagation();
+        e.preventDefault();
+        console.log($(context))
+        console.log("good", $(context).data('path'));
+    };
+
+    FilesFolders.prototype._fileClick = function(e, context) {
+        e.stopPropagation();
+        e.preventDefault();
+        console.log($(context))
+        console.log("good-f", $(context).data('path'));
+    };
 
     return FilesFolders;
 });
