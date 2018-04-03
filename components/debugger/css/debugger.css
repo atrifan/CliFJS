@@ -1,0 +1,12 @@
+.debuggerWrapper {
+    padding: 10px;
+}
+
+.debuggerWrapper ul {
+    list-style-type: none;
+}
+.debuggerWrapper .left-container {
+    min-width: 240px;
+    min-height: 250px;
+    border: 1px solid;
+}
