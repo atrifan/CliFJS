@@ -1,0 +1,84 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        #ws-data {
+            width:320px;
+            height:320px;
+            border: 1px solid;
+            padding: 4px;
+        }
+    </style>
+</head>
+<body>
+    <label>Service Token:</label><br/><textarea id="token" cols="80" rows="10"></textarea>
+    <br/>
+    <label>Api-Key:</label><input id="api-key" type="text"/>
+    <br/>
+    <label>Cookie path:</label><input id="cookie-path" type="text"/>
+
+    <div id="ws-data">
+
+    </div>
+    <button id="post" value="post-data">Post Data</button>
+    <button id="test-ws" value="test-ws">Test WS</button>
+    <button id="close-ws" value="close-ws">Close WS</button>
+    <script>
+        $('#post').on('click', function() {
+            var sendInfo = {
+                cookie1: 'cookie_value1',
+                'X-Gw-Cookie-Path': $('#cookie-path').val()
+            };
+
+            $.ajax({
+                url: '/api/set-cookie',
+                type: 'post',
+                data: JSON.stringify(sendInfo),
+                headers: {
+                    "Authorization": 'Bearer ' + $("#token").val(),   //If your header name has spaces or any other char not appropriate
+                    "X-Api-Key": $('#api-key').val()  //for object property name, use quoted notation shown in second
+                },
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                success: function (data, status) {
+                    $("#ws-data").text("Data: " + data + "\nStatus: " + status);
+                },
+                error: function(response) {
+                    $("#ws-data").text('Error: ' + response.responseText);
+                }
+            });
+
+        });
+        var ws;
+        $("#test-ws").on('click', function() {
+            // Let us open a web socket
+            ws = new WebSocket("wss://" + location.host + "/upgrade-request");
+
+            ws.onopen = function() {
+
+                // Web Socket is connected, send data using send()
+                ws.send("Test");
+                alert("Message is sent...");
+            };
+
+            ws.onmessage = function (evt) {
+                var received_msg = evt.data;
+                $("#ws-data").text(received_msg)
+            };
+
+            ws.onclose = function() {
+
+                // websocket is closed.
+                alert("Connection is closed...");
+            };
+
+        });
+
+        $("#close-ws").on('click', function() {
+            if (ws) {
+                ws.close();
+            }
+        })
+    </script>
+</body>
+</html>
